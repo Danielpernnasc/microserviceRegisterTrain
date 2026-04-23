@@ -1,0 +1,183 @@
+{
+  "nameTrain": "Natural Strength Plan",
+  "category": "Natural Physique",
+  "description": "Treino focado em hipertrofia, densidade muscular e recuperação natural.",
+  "createdAt": "",
+  "schedules": [
+    {
+      "weekday": "Segunda",
+      "musclegroup": "Costas + Glúteo Médio + Abdômen",
+      "emphasis": "Força e estabilidade posterior",
+      "exercises": [
+        {
+          "nameExercise": "Barra fixa ou puxada alta",
+          "series": 4,
+          "repetitions": "10",
+          "breakTime": "90s",
+          "observation": "Foco na contração máxima"
+        },
+        {
+          "nameExercise": "Remada unilateral",
+          "series": 4,
+          "repetitions": "10",
+          "breakTime": "75s",
+          "observation": "Controle total do movimento"
+        },
+        {
+          "nameExercise": "Pulldown pegada neutra",
+          "series": 3,
+          "repetitions": "12",
+          "breakTime": "60s",
+          "observation": "Isometria de 2s na fase final"
+        }
+      ]
+    },
+    {
+      "weekday": "Terça",
+      "musclegroup": "Peito + Bíceps + Abdômen",
+      "emphasis": "Hipertrofia",
+      "exercises": [
+        {
+          "nameExercise": "Supino inclinado com halteres",
+          "series": 4,
+          "repetitions": "10",
+          "breakTime": "90s",
+          "observation": "Amplitude total"
+        },
+        {
+          "nameExercise": "Crossover",
+          "series": 3,
+          "repetitions": "15",
+          "breakTime": "60s",
+          "observation": "Contração máxima no final"
+        },
+        {
+          "nameExercise": "Rosca alternada",
+          "series": 3,
+          "repetitions": "12",
+          "breakTime": "60s",
+          "observation": "Execução controlada"
+        }
+      ]
+    },
+    {
+      "weekday": "Quarta",
+      "musclegroup": "Posterior de Coxa + Quadríceps + Panturrilha",
+      "emphasis": "Força e hipertrofia",
+      "exercises": [
+        {
+          "nameExercise": "Stiff com barra",
+          "series": 4,
+          "repetitions": "10",
+          "breakTime": "90s",
+          "observation": "Descida controlada"
+        },
+        {
+          "nameExercise": "Mesa flexora",
+          "series": 4,
+          "repetitions": "15",
+          "breakTime": "60s",
+          "observation": "Pico de contração"
+        },
+        {
+          "nameExercise": "Leg press",
+          "series": 4,
+          "repetitions": "12",
+          "breakTime": "75s",
+          "observation": "Amplitude segura"
+        }
+      ]
+    },
+    {
+      "weekday": "Quinta",
+      "musclegroup": "Descanso Ativo",
+      "emphasis": "Mobilidade e recuperação",
+      "exercises": [
+        {
+          "nameExercise": "Caminhada rápida",
+          "series": 1,
+          "repetitions": "30 min",
+          "breakTime": "N/A",
+          "observation": "Ritmo moderado"
+        },
+        {
+          "nameExercise": "Alongamento geral",
+          "series": 1,
+          "repetitions": "15 min",
+          "breakTime": "N/A",
+          "observation": "Mobilidade articular"
+        }
+      ]
+    },
+    {
+      "weekday": "Sexta",
+      "musclegroup": "Ombros + Tríceps + Abdômen",
+      "emphasis": "Hipertrofia",
+      "exercises": [
+        {
+          "nameExercise": "Elevação lateral",
+          "series": 4,
+          "repetitions": "15",
+          "breakTime": "45s",
+          "observation": "Sem balanço corporal"
+        },
+        {
+          "nameExercise": "Desenvolvimento Arnold",
+          "series": 3,
+          "repetitions": "12",
+          "breakTime": "60s",
+          "observation": "Controle total"
+        },
+        {
+          "nameExercise": "Tríceps corda",
+          "series": 3,
+          "repetitions": "15",
+          "breakTime": "60s",
+          "observation": "Contração máxima"
+        }
+      ]
+    },
+    {
+      "weekday": "Sábado",
+      "musclegroup": "Quadríceps + Glúteos",
+      "emphasis": "Força e volume",
+      "exercises": [
+        {
+          "nameExercise": "Agachamento livre",
+          "series": 4,
+          "repetitions": "10",
+          "breakTime": "90s",
+          "observation": "Profundidade segura"
+        },
+        {
+          "nameExercise": "Cadeira extensora",
+          "series": 3,
+          "repetitions": "15",
+          "breakTime": "45s",
+          "observation": "Drop set na última série"
+        },
+        {
+          "nameExercise": "Glúteo no cabo",
+          "series": 3,
+          "repetitions": "20",
+          "breakTime": "45s",
+          "observation": "Foco no glúteo máximo"
+        }
+      ]
+    },
+    {
+      "weekday": "Domingo",
+      "musclegroup": "Descanso Total",
+      "emphasis": "Recuperação muscular",
+      "exercises": [
+        {
+          "nameExercise": "Descanso",
+          "series": 0,
+          "repetitions": "N/A",
+          "breakTime": "N/A",
+          "observation": "Sono, alimentação e hidratação"
+        }
+      ]
+    }
+  ]
+}

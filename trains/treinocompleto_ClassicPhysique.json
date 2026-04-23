@@ -1,0 +1,330 @@
+{
+    "nameTrain": "Classic Elite Pro",
+    "category": "Classic Physique",
+    "description": "Divisao semanal avan‡ada estilo Classic Physique",
+    "createdAt": "",
+    "schedules": [
+        {
+            "weekday": "Segunda",
+            "musclegroup": "Peito e Ombros",
+            "emphasis": "Volume e densidade peitoral",
+            "exercises": [
+                {
+                    "nameExercise": "Supino reto barra",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "90s",
+                    "observation": "1a leve, ultimas 2 ate falha"
+                },
+                {
+                    "nameExercise": "Supino Inclinado halteres",
+                    "series": 4,
+                    "repetitions": "10-12",
+                    "breakTime": "75s",
+                    "observation": "Concentracao maxima no pico"
+                },
+                {
+                    "nameExercise": "Crucifixo inclinado maquina",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "2s contracao / 3s descida"
+                },
+                {
+                    "nameExercise": "Crossover alto para baixo",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "75s",
+                    "observation": "Pump final"
+                },
+                {
+                    "nameExercise": "Desenvolvimento militar barra",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "60s",
+                    "observation": "Tecnica controlada"
+                },
+                {
+                    "nameExercise": "Elevacao frontal halteres",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Superset com lateral"
+                },
+                {
+                    "nameExercise": "Elevacao lateral halteres",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Rest-pause na ultima serie"
+                }
+            ]
+        },
+        {
+            "weekday": "Terca",
+            "musclegroup": "Costas e Abdomen",
+            "emphasis": "Largura e espessura dorsal",
+            "exercises": [
+                {
+                    "nameExercise": "Barra fixa (pegada aberta)",
+                    "series": 4,
+                    "repetitions": "8-12",
+                    "breakTime": "90s",
+                    "observation": "Aquecimento + falha controlada"
+                },
+                {
+                    "nameExercise": "Puxada frente pegada media",
+                    "series": 4,
+                    "repetitions": "10-12",
+                    "breakTime": "90s",
+                    "observation": "Contracao de 1s no final"
+                },
+                {
+                    "nameExercise": "Remada curvada barra",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "75s",
+                    "observation": "Estilo Cbum, pesada e tecnica"
+                },
+                {
+                    "nameExercise": "Remada unilateral halter",
+                    "series": 3,
+                    "repetitions": "10-12",
+                    "breakTime": "60s",
+                    "observation": "Alongar ao maximo"
+                },
+                {
+                    "nameExercise": "Abdomen na polia alta",
+                    "series": 4,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Contrair forte"
+                },
+                {
+                    "nameExercise": "Prancha + elevacao de pernas",
+                    "series": 3,
+                    "repetitions": "30s + 15 reps",
+                    "breakTime": "45s",
+                    "observation": "Estilo Classic"
+                }
+            ]
+        },
+        {
+            "weekday": "Quarta",
+            "musclegroup": "Quadriceps",
+            "emphasis": "Volume e detalhamento",
+            "exercises": [
+                {
+                    "nameExercise": "Extensora (pre-exaustao)",
+                    "series": 4,
+                    "repetitions": "20/15/12/10",
+                    "breakTime": "60s",
+                    "observation": "1a leve, ultimas 2 ate falha"
+                },
+                {
+                    "nameExercise": "Agachamento livre",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "90s",
+                    "observation": "Profundidade total"
+                },
+                {
+                    "nameExercise": "Leg press 45",
+                    "series": 4,
+                    "repetitions": "10-12",
+                    "breakTime": "75s",
+                    "observation": "Pes juntos/foco no vasto lateral"
+                },
+                {
+                    "nameExercise": "Hack squat",
+                    "series": 3,
+                    "repetitions": "10-12",
+                    "breakTime": "60s",
+                    "observation": "3s descida"
+                },
+                {
+                    "nameExercise": "Panturrilha com halteres",
+                    "series": 3,
+                    "repetitions": "12 cada perna",
+                    "breakTime": "45s",
+                    "observation": "Queima total"
+                },
+                {
+                    "nameExercise": "Panturrilha em pe",
+                    "series": 4,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Pausa de 1s no topo"
+                }
+            ]
+        },
+        {
+            "weekday": "Quinta",
+            "musclegroup": "Ombros e Triceps",
+            "emphasis": "Densidade e definicao",
+            "exercises": [
+                {
+                    "nameExercise": "Desenvolvimento halteres",
+                    "series": 4,
+                    "repetitions": "8-12",
+                    "breakTime": "60s",
+                    "observation": "Drop na ultima"
+                },
+                {
+                    "nameExercise": "Elevacao lateral polia",
+                    "series": 4,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Controle total"
+                },
+                {
+                    "nameExercise": "Elevacao posterior banco 45",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Estilo Caike (detalhe deltoide)"
+                },
+                {
+                    "nameExercise": "Encolhimento barra",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Trapezio"
+                },
+                {
+                    "nameExercise": "Triceps corda",
+                    "series": 4,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Aquecimento"
+                },
+                {
+                    "nameExercise": "Triceps frances",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "75s",
+                    "observation": "Pesado"
+                },
+                {
+                    "nameExercise": "Mergulho maquina ou peso corporal",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Falha tecnica"
+                }
+            ]
+        },
+        {
+            "weekday": "Sexta",
+            "musclegroup": "Costas e Biceps",
+            "emphasis": "Forca e espessura",
+            "exercises": [
+                {
+                    "nameExercise": "Levantamento terra",
+                    "series": 4,
+                    "repetitions": "6-8",
+                    "breakTime": "120s",
+                    "observation": "Densidade e forca"
+                },
+                {
+                    "nameExercise": "Puxada neutra",
+                    "series": 4,
+                    "repetitions": "10-12",
+                    "breakTime": "90s",
+                    "observation": "Contracao total"
+                },
+                {
+                    "nameExercise": "Remada baixa cabo",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "2s isometria"
+                },
+                {
+                    "nameExercise": "Pulldown unilateral",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Movimento Controlado"
+                },
+                {
+                    "nameExercise": "Rosca alternadas halteres",
+                    "series": 3,
+                    "repetitions": "10-12",
+                    "breakTime": "75s",
+                    "observation": "Superset Martelo"
+                },
+                {
+                    "nameExercise": "Rosca martelo cabo",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Pump final"
+                }
+            ]
+        },
+        {
+            "weekday": "Sabado",
+            "musclegroup": "Posterior, Gluteos e Panturrilha",
+            "emphasis": "Densidade posterior",
+            "exercises": [
+                {
+                    "nameExercise": "Cadeira Flexora",
+                    "series": 4,
+                    "repetitions": "15/12/10/8",
+                    "breakTime": "60s",
+                    "observation": "Rest-pause"
+                },
+                {
+                    "nameExercise": "Stiff halteres",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "45s",
+                    "observation": "3s descida"
+                },
+                {
+                    "nameExercise": "Levantamento terra romeno",
+                    "series": 3,
+                    "repetitions": "8-10",
+                    "breakTime": "45s",
+                    "observation": "Foco gluteo / posterior"
+                },
+                {
+                    "nameExercise": "Glute bridge",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Contracao maxima"
+                },
+                {
+                    "nameExercise": "Adutor / abdutor maquina",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "SuperSet"
+                },
+                {
+                    "nameExercise": "Panturrilha sentado",
+                    "series": 4,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "2s no pico"
+                }
+            ]
+        },
+        {
+            "weekday": "Domingo",
+            "musclegroup": "Descanso ativo",
+            "emphasis": "Recuperacao",
+            "exercises": [
+                {
+                    "nameExercise": "Descanso ativo",
+                    "series": 0,
+                    "repetitions": "-",
+                    "breakTime": "-",
+                    "observation": "Caminhada leve, alongamento ou yoga"
+                }
+            ]
+        }
+    ]
+}
