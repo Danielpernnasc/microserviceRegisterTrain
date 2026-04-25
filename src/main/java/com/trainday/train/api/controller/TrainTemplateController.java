@@ -1,0 +1,67 @@
+package com.trainday.train.api.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.trainday.train.api.DTO.request.TrainTemplateReq;
+import com.trainday.train.application.TrainService;
+import com.trainday.train.application.TrainTemplateService;
+
+import com.trainday.train.domain.models.TrainTemplate;
+import com.trainday.train.infra.security.JwtService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
+@RestController
+@RequestMapping("/trainTemplate")
+public class TrainTemplateController {
+
+    private final TrainTemplateService trainTemplateService;
+    private static final Logger log = LoggerFactory.getLogger(TrainService.class);
+    private final JwtService jwtService;
+    public TrainTemplateController(
+        TrainTemplateService trainTemplateService,
+        JwtService jwtService
+    ) {
+        
+        this.trainTemplateService = trainTemplateService;
+        this.jwtService = jwtService;
+    }
+
+   @PostMapping("/templates/{id}/apply")
+   public ResponseEntity<TrainTemplate> applyTemplateTrain(
+    @PathVariable String id,
+    @PathVariable String athleteId,
+    @RequestHeader("Authorization") String authHeader
+
+   ){
+        log.info("Received request to create train: {}", id);
+        String token = authHeader.substring(7); 
+        String IdAthlete = jwtService.extractEmail(token);
+        TrainTemplate applyTrain = trainTemplateService.applyTemplateTrain(id, IdAthlete);
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(applyTrain);  
+   }
+
+    @GetMapping("/templates")
+    public ResponseEntity<List<TrainTemplate>> getTrainTemplate() {
+        return ResponseEntity.ok(trainTemplateService.getTrainTemplate());
+    }
+    
+    
+
+
+
+}

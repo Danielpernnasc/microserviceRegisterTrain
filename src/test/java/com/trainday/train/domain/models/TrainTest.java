@@ -27,7 +27,7 @@ public class TrainTest {
         schedule.setWeekday("Monday");
         schedule.setMusclegroup("Chest and Triceps");
         schedule.setEmphasis("Hypertrophy");
-        schedule.setExercises(List.of(exercise));
+        schedule.setExercise(List.of(exercise));
 
 
         train.setId("1");

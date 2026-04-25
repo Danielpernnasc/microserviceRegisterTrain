@@ -38,10 +38,19 @@ public class SecurityConfig {
 
                 // Train endpoints públicos
                 .requestMatchers(HttpMethod.POST, "/train/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/train/my-trains").permitAll()
+                .requestMatchers(HttpMethod.GET, "/train/my-trains/**").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/train/my-trains/**").permitAll()
+                .requestMatchers(HttpMethod.PATCH,  "/train/my-trains/*/schedule/*/exercise/*").permitAll()
+                .requestMatchers(
+                   HttpMethod.PATCH,
+                   "/train/my-trains/*/schedule/*"
+               ).permitAll()
+                 .requestMatchers(HttpMethod.PATCH, "/train/my-trains/**").permitAll()
+                 .requestMatchers(HttpMethod.DELETE, "/train/my-trains/**").permitAll()
+            
+                 .requestMatchers(HttpMethod.GET, "/trainTemplate/**").permitAll()
+                 .requestMatchers(HttpMethod.POST, "/trainTemplate/**").permitAll()
 
-                // qualquer outro endpoint exige token
-                .anyRequest().authenticated()
             )
 
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
