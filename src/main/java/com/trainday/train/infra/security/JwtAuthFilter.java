@@ -33,17 +33,29 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             String authHeader = request.getHeader("Authorization");
 
             if(authHeader == null || !authHeader.startsWith("Bearer ")){
+                System.out.println("SEM TOKEN");
                 filterChain.doFilter(request, response);
                 return;
             }
 
             String token = authHeader.substring(7);
 
-            if(jwtService.isTokenValid(token)){
-                String email = jwtService.extractEmail(token);
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null, List.of());
+            System.out.println("VÁLIDANDO TOKEN...");
 
-                SecurityContextHolder.getContext().setAuthentication((Authentication) auth);
+            try{
+
+                if(jwtService.isTokenValid(token)){
+                    String email = jwtService.extractEmail(token);
+
+                    System.out.println("TOKEN OK: " + email);
+
+                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null, List.of());
+
+                    SecurityContextHolder.getContext().setAuthentication((Authentication) auth);
+                }
+
+            } catch (Exception e){
+                System.out.println("TOKEN INVÁLIDO: " + e.getMessage());
             }
 
             filterChain.doFilter(request, response);

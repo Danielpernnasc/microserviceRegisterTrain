@@ -1,7 +1,9 @@
 package com.trainday.train.domain.models;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,15 +14,18 @@ public class TrainTemplate  {
     private String nameTrain;
     private String category;
     private String description;
+    @CreatedDate
+     private LocalDateTime createdAt;
     private List<TrainSchedule> schedules;
 
     public TrainTemplate(){}
 
-    public TrainTemplate(String id, String nameTrain, String category, String description,  List<TrainSchedule> schedules) {
+    public TrainTemplate(String id, String nameTrain, String category, String description, LocalDateTime createdAt, List<TrainSchedule> schedules) {
         this.id = id;
         this.nameTrain = nameTrain;
         this.category = category;
         this.description = description;
+        this.createdAt = createdAt;
         this.schedules = schedules;
     }
 
@@ -30,7 +35,7 @@ public class TrainTemplate  {
         return id;
     }
 
-    public void setId(String Id){
+    public void setId(String id){
         this.id = id;
     }
 
@@ -56,6 +61,14 @@ public class TrainTemplate  {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public List<TrainSchedule> getSchedules() {

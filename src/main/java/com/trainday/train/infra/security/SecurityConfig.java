@@ -18,17 +18,17 @@ public class SecurityConfig {
     }
 
      @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        return http
+      public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+          return http
+  
             .csrf(csrf -> csrf.disable())
-
+            
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
-
+            
             .authorizeHttpRequests(auth -> auth
-
+                
                 // Swagger
                 .requestMatchers(
                     "/swagger-ui/**",
@@ -37,20 +37,22 @@ public class SecurityConfig {
                 ).permitAll()
 
                 // Train endpoints públicos
-                .requestMatchers(HttpMethod.POST, "/train/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/train/my-trains/**").permitAll()
-                .requestMatchers(HttpMethod.PUT, "/train/my-trains/**").permitAll()
-                .requestMatchers(HttpMethod.PATCH,  "/train/my-trains/*/schedule/*/exercise/*").permitAll()
-                .requestMatchers(
-                   HttpMethod.PATCH,
-                   "/train/my-trains/*/schedule/*"
-               ).permitAll()
-                 .requestMatchers(HttpMethod.PATCH, "/train/my-trains/**").permitAll()
-                 .requestMatchers(HttpMethod.DELETE, "/train/my-trains/**").permitAll()
-            
-                 .requestMatchers(HttpMethod.GET, "/trainTemplate/**").permitAll()
-                 .requestMatchers(HttpMethod.POST, "/trainTemplate/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/train/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/train/my-trains").permitAll()
+                .requestMatchers(HttpMethod.GET, "/train/my-trains/**").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/train/my-trains/**").authenticated()
+                .requestMatchers(HttpMethod.DELETE, "/train/my-trains/**").authenticated()
+                .requestMatchers(HttpMethod.PATCH, "/train/my-trains/*/schedule/*").authenticated()
+                .requestMatchers(HttpMethod.PATCH, "/train/my-trains/*/schedule/*/exercise/*").authenticated()
 
+                .requestMatchers(HttpMethod.GET, "/trainTemplate/templates").permitAll()
+                .requestMatchers(HttpMethod.POST, "/trainTemplate/templates/*/apply").authenticated()
+
+
+                // qualquer outro endpoint exige token
+                .anyRequest().authenticated()
+                
+              
             )
 
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)

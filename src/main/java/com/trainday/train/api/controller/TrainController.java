@@ -55,6 +55,7 @@ public class TrainController {
         String token = authHeader.substring(7); // remove "Bearer "
         String atletaId = jwtService.extractEmail(token); // pega o id do atl
         Train createdTrain = trainService.createTrain(req, atletaId);
+              System.out.println("ENTROU POST"); 
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(createdTrain);
     }
@@ -79,7 +80,7 @@ public class TrainController {
         @PathVariable String id,
         @PathVariable int index,
          @RequestBody TrainScheduleRequest req) {
-                System.out.println("ENTROU PATCH SCHEDULE"); 
+  
         //Train train = trainService.patchTrainScheduleById(id, index, req);
         Train train = trainScheduleExerciseService.patchTrainScheduleById(id, index, req);
 

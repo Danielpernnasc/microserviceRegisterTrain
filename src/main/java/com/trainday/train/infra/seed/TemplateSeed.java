@@ -25,8 +25,6 @@ public class TemplateSeed implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-             long total = repository.count();
-
         if (repository.count() == 0) {
             saveFile("trains/treinocompleto_NaturalPhysique.json");
             saveFile("trains/treinocompleto_MensPhysique.json");
