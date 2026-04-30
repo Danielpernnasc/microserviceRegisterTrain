@@ -74,6 +74,8 @@ public class TrainScheduleExerciseService {
             throw new RuntimeException("Exercise index out of bounds");
         }
 
+        
+
         Exercise exercise = exercises.get(exerciseIndex);
 
         if (req.nameExercise() != null)
