@@ -2,6 +2,9 @@ package com.trainday.train.infra.security;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
  
 import org.springframework.security.core.Authentication;
@@ -17,6 +20,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
+
+    private static final Logger log = LoggerFactory.getLogger(JwtAuthFilter.class);
 
     private final JwtService jwtService;
 
@@ -50,7 +55,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 }
 
             } catch (Exception e){
-                      e.printStackTrace();
+                log.warn("Invalid JWT token: {}", e.getMessage());
             }
 
             filterChain.doFilter(request, response);
