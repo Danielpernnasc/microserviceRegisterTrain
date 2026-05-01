@@ -1,4 +1,4 @@
-# Train Service
+🏋️ # Train Service
 
 API REST para gerenciamento de treinos, templates de treino, agenda semanal e exercicios de atletas. O servico foi construido com Java 21, Spring Boot, MongoDB e autenticacao via JWT.
 
