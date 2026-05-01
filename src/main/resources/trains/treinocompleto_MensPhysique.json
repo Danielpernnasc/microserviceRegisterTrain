@@ -1,0 +1,259 @@
+{
+    "nameTrain": "Mens Aesthetic Flow",
+    "category": "Mens Physique",
+    "description": "Foco em simetria, cintura fina e defini‡ao muscular",
+    "schedules": [
+        {
+            "weekday": "Segunda",
+            "musclegroup": "Peito e Triceps",
+            "emphasis": "Desenvolvimento peitoral e definicao",
+            "exercises": [
+                {
+                    "nameExercise": "Supino Reto barra",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "90s",
+                    "observation": "Manter os pes no chao e a coluna neutra"
+                },
+                {
+                    "nameExercise": "Supino Inclinado halteres",
+                    "series": 4,
+                    "repetitions": "10-12",
+                    "breakTime": "75s",
+                    "observation": "Controlar a descida dos halteres"
+                },
+                {
+                    "nameExercise": "Crossover polia alta",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Evitar sobrecarga nos ombros"
+                },
+                {
+                    "nameExercise": "Mergulho paralelas",
+                    "series": 3,
+                    "repetitions": "10-12",
+                    "breakTime": "75s",
+                    "observation": "Manter o tronco levemente inclinado para frente"
+                },
+                {
+                    "nameExercise": "Triceps testa barra W",
+                    "series": 3,
+                    "repetitions": "10-12",
+                    "breakTime": "75s",
+                    "observation": "Evitar hiperextensao dos cotovelos"
+                },
+                {
+                    "nameExercise": "Triceps corda polia alta",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Manter os cotovelos fixos ao lado do corpo"
+                }
+            ]
+        },
+        {
+            "weekday": "Terca",
+            "musclegroup": "Costas e Biceps",
+            "emphasis": "Largura dorsal e espessura",
+            "exercises": [
+                {
+                    "nameExercise": "Puxada frente pegada aberta",
+                    "series": 4,
+                    "repetitions": "10-12",
+                    "breakTime": "90s",
+                    "observation": "Foco na contracao das escapulas"
+                },
+                {
+                    "nameExercise": "Remada curvada com barra",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "90s",
+                    "observation": "Manter a coluna neutra durante o movimento"
+                },
+                {
+                    "nameExercise": "Remada unilateral com halteres",
+                    "series": 3,
+                    "repetitions": "10-12",
+                    "breakTime": "75s",
+                    "observation": "Evitar girar o tronco durante o movimento"
+                },
+                {
+                    "nameExercise": "Rosca direta barra reta",
+                    "series": 3,
+                    "repetitions": "10",
+                    "breakTime": "60s",
+                    "observation": "Manter os cotovelos fixos ao lado do corpo"
+                },
+                {
+                    "nameExercise": "Rosca alternada com rotacao",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Controlar a descida dos halteres"
+                },
+                {
+                    "nameExercise": "Rosca martelo",
+                    "series": 2,
+                    "repetitions": "15",
+                    "breakTime": "45s",
+                    "observation": "Manter os punhos neutros durante o movimento"
+                }
+            ]
+        },
+        {
+            "weekday": "Quarta",
+            "musclegroup": "Descanso ou cardio leve",
+            "emphasis": "Recuperacao ativa",
+            "exercises": [
+                {
+                    "nameExercise": "Descanso total ou atividade leve",
+                    "series": 0,
+                    "repetitions": "N/A",
+                    "breakTime": "N/A",
+                    "observation": "Caminhada, natacao ou alongamento"
+                }
+            ]
+        },
+        {
+            "weekday": "Quinta",
+            "musclegroup": "Abdomen e Core",
+            "emphasis": "Definicao abdominal",
+            "exercises": [
+                {
+                    "nameExercise": "Cardio leve/moderado",
+                    "series": 1,
+                    "repetitions": "30-45 min",
+                    "breakTime": "N/A",
+                    "observation": "Esteira, bike ou eliptico"
+                },
+                {
+                    "nameExercise": "Abdominal infra banco",
+                    "series": 3,
+                    "repetitions": "20",
+                    "breakTime": "45s",
+                    "observation": "Foco na regiao inferior"
+                },
+                {
+                    "nameExercise": "Prancha",
+                    "series": 3,
+                    "repetitions": "45s",
+                    "breakTime": "45s",
+                    "observation": "Manter corpo alinhado"
+                },
+                {
+                    "nameExercise": "Abdominal lateral obliquo",
+                    "series": 3,
+                    "repetitions": "15 cada lado",
+                    "breakTime": "45s",
+                    "observation": "Movimento controlado"
+                }
+            ]
+        },
+        {
+            "weekday": "Sexta",
+            "musclegroup": "Pernas",
+            "emphasis": "Simetria e proporcao",
+            "exercises": [
+                {
+                    "nameExercise": "Cadeira flexora",
+                    "series": 4,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Pre-exaustao de posteriores"
+                },
+                {
+                    "nameExercise": "Stiff halteres",
+                    "series": 4,
+                    "repetitions": "10-12",
+                    "breakTime": "90s",
+                    "observation": "Foco no alongamento"
+                },
+                {
+                    "nameExercise": "Agachamento livre/smith",
+                    "series": 3,
+                    "repetitions": "8-10",
+                    "breakTime": "90s",
+                    "observation": "Descida controlada"
+                },
+                {
+                    "nameExercise": "Leg press",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "75s",
+                    "observation": "Amplitude completa"
+                },
+                {
+                    "nameExercise": "Cadeira extensora",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Contracao no topo"
+                },
+                {
+                    "nameExercise": "Panturrilha em pe",
+                    "series": 4,
+                    "repetitions": "20",
+                    "breakTime": "45s",
+                    "observation": "Pausa no topo"
+                }
+            ]
+        },
+        {
+            "weekday": "Sabado",
+            "musclegroup": "Ombros e Trapezio",
+            "emphasis": "Proporcao e definicao",
+            "exercises": [
+                {
+                    "nameExercise": "Desenvolvimento halteres",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "90s",
+                    "observation": "Amplitude completa"
+                },
+                {
+                    "nameExercise": "Elevacao lateral",
+                    "series": 4,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Controle na subida e descida"
+                },
+                {
+                    "nameExercise": "Elevacao frontal alternada",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Evitar impulso"
+                },
+                {
+                    "nameExercise": "Crucifixo invertido",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Foco no deltoide posterior"
+                },
+                {
+                    "nameExercise": "Encolhimento halteres",
+                    "series": 3,
+                    "repetitions": "12-15",
+                    "breakTime": "60s",
+                    "observation": "Contracao maxima no topo"
+                }
+            ]
+        },
+        {
+            "weekday": "Domingo",
+            "musclegroup": "Descanso total",
+            "emphasis": "Recuperacao completa",
+            "exercises": [
+                {
+                    "nameExercise": "Descanso total",
+                    "series": 0,
+                    "repetitions": "N/A",
+                    "breakTime": "N/A",
+                    "observation": "Recuperacao muscular e mental"
+                }
+            ]
+        }
+    ]
+}

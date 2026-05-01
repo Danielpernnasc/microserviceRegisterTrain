@@ -7,33 +7,21 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
-
-
-@Document(collection = "train")
-
-public class Train {
+@Document(collection = "train_templates")
+public class TrainTemplate  {
     @Id
     private String id;
-    private String athleteId;
-    private String  nameTrain;
+    private String nameTrain;
     private String category;
-
     private String description;
-    
     @CreatedDate
-    private LocalDateTime createdAt;
-
+     private LocalDateTime createdAt;
     private List<TrainSchedule> schedules;
 
- 
-    public Train() {
-    }
+    public TrainTemplate(){}
 
-
-    public Train(String id, String atheleteId, String nameTrain, String category, String description, LocalDateTime createdAt, List<TrainSchedule> schedules) {
+    public TrainTemplate(String id, String nameTrain, String category, String description, LocalDateTime createdAt, List<TrainSchedule> schedules) {
         this.id = id;
-        this.athleteId = atheleteId;
         this.nameTrain = nameTrain;
         this.category = category;
         this.description = description;
@@ -41,38 +29,21 @@ public class Train {
         this.schedules = schedules;
     }
 
-    
-    
-
-    @org.springframework.data.annotation.Transient
-    public void prePersist() {
-        if (this.createdAt == null) {
-            this.createdAt = java.time.LocalDateTime.now();
-        }
-    }
-
-    public String getAthleteId() {
-        return athleteId;
-    }
-
-    public void setAthleteId(String athleteId) {
-        this.athleteId = athleteId;
-    }
+    /*getters e Setters */
 
     public String getId() {
         return id;
     }
 
-
-    public void setId(String id) {
+    public void setId(String id){
         this.id = id;
     }
 
-    public String getNameTrain() {
+    public String getNameTrain(){
         return nameTrain;
     }
 
-    public void setNameTrain(String nameTrain) {
+    public void setNameTrain(String nameTrain){
         this.nameTrain = nameTrain;
     }
 
@@ -107,5 +78,4 @@ public class Train {
     public void setSchedules(List<TrainSchedule> schedules) {
         this.schedules = schedules;
     }
-
 }

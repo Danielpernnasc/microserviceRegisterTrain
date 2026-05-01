@@ -1,0 +1,134 @@
+<svg width="1100" height="720" viewBox="0 0 1100 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Train Service Hexagonal Architecture</title>
+  <desc id="desc">Diagram showing HTTP client, security filters, inbound adapters, application services, domain models, repositories and MongoDB around a hexagonal architecture.</desc>
+
+  <defs>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7280"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c2410c"/>
+    </marker>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { fill: #0f172a; font: 700 30px Arial, sans-serif; }
+      .subtitle { fill: #475569; font: 400 15px Arial, sans-serif; }
+      .section { fill: #334155; font: 700 15px Arial, sans-serif; }
+      .label { fill: #0f172a; font: 700 16px Arial, sans-serif; }
+      .small { fill: #475569; font: 400 13px Arial, sans-serif; }
+      .tiny { fill: #64748b; font: 400 12px Arial, sans-serif; }
+      .domain-title { fill: #4c1d95; font: 700 20px Arial, sans-serif; }
+      .domain-text { fill: #5b21b6; font: 400 14px Arial, sans-serif; }
+      .box { rx: 14; filter: url(#soft-shadow); }
+      .inbound { fill: #eff6ff; stroke: #2563eb; }
+      .security { fill: #f5f3ff; stroke: #7c3aed; }
+      .app { fill: #ecfeff; stroke: #0891b2; }
+      .domain { fill: #f4f0ff; stroke: #7c3aed; }
+      .outbound { fill: #fff7ed; stroke: #ea580c; }
+      .db { fill: #f8fafc; stroke: #64748b; }
+      .hex-adapters { stroke: #a78bfa; stroke-width: 2; stroke-dasharray: 9 7; fill: #fafaff; }
+      .hex-ports { stroke: #10b981; stroke-width: 2; stroke-dasharray: 8 6; fill: none; }
+      .flow { stroke: #6b7280; stroke-width: 2.2; marker-end: url(#arrow-gray); }
+      .flow-blue { stroke: #2563eb; stroke-width: 2.2; marker-end: url(#arrow-blue); }
+      .flow-orange { stroke: #c2410c; stroke-width: 2.2; marker-end: url(#arrow-orange); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1100" height="720"/>
+
+  <text x="550" y="52" text-anchor="middle" class="title">Train Service - Arquitetura Hexagonal</text>
+  <text x="550" y="78" text-anchor="middle" class="subtitle">Entrada HTTP, seguranca JWT, casos de uso, dominio e persistencia MongoDB</text>
+
+  <polygon class="hex-adapters" points="550,105 900,290 900,500 550,670 200,500 200,290"/>
+  <polygon class="hex-ports" points="550,165 810,310 810,475 550,610 290,475 290,310"/>
+
+  <text x="550" y="130" text-anchor="middle" class="section">Adapters</text>
+  <text x="550" y="188" text-anchor="middle" class="section">Ports / Interfaces</text>
+  <text x="550" y="635" text-anchor="middle" class="section">Ports / Interfaces</text>
+  <text x="550" y="690" text-anchor="middle" class="section">Adapters</text>
+
+  <rect x="430" y="228" width="240" height="132" rx="18" class="domain"/>
+  <text x="550" y="270" text-anchor="middle" class="domain-title">Dominio</text>
+  <text x="550" y="298" text-anchor="middle" class="domain-text">Train, TrainTemplate</text>
+  <text x="550" y="322" text-anchor="middle" class="domain-text">TrainSchedule, Exercise</text>
+  <text x="550" y="346" text-anchor="middle" class="domain-text">regras centrais de treino</text>
+
+  <rect x="422" y="400" width="256" height="100" rx="16" class="app"/>
+  <text x="550" y="430" text-anchor="middle" class="label">Application Services</text>
+  <text x="550" y="456" text-anchor="middle" class="small">TrainService</text>
+  <text x="550" y="476" text-anchor="middle" class="small">TrainTemplateService</text>
+  <text x="550" y="496" text-anchor="middle" class="small">TrainScheduleExerciseService</text>
+
+  <line x1="550" y1="360" x2="550" y2="400" class="flow"/>
+  <line x1="550" y1="500" x2="550" y2="550" class="flow"/>
+
+  <rect x="80" y="122" width="225" height="58" rx="12" class="inbound"/>
+  <text x="192" y="146" text-anchor="middle" class="label">Cliente HTTP</text>
+  <text x="192" y="166" text-anchor="middle" class="small">REST / JSON</text>
+
+  <rect x="70" y="230" width="250" height="64" rx="12" class="security"/>
+  <text x="195" y="256" text-anchor="middle" class="label">SecurityFilterChain</text>
+  <text x="195" y="276" text-anchor="middle" class="small">rotas publicas e protegidas</text>
+
+  <rect x="70" y="316" width="250" height="64" rx="12" class="security"/>
+  <text x="195" y="342" text-anchor="middle" class="label">JwtAuthFilter</text>
+  <text x="195" y="362" text-anchor="middle" class="small">intercepta e valida token</text>
+
+  <rect x="70" y="430" width="250" height="64" rx="12" class="inbound"/>
+  <text x="195" y="456" text-anchor="middle" class="label">TrainController</text>
+  <text x="195" y="476" text-anchor="middle" class="small">/train /my-trains</text>
+
+  <rect x="70" y="516" width="250" height="64" rx="12" class="inbound"/>
+  <text x="195" y="542" text-anchor="middle" class="label">TrainTemplateController</text>
+  <text x="195" y="562" text-anchor="middle" class="small">/trainTemplate/templates</text>
+
+  <line x1="192" y1="180" x2="192" y2="230" class="flow-blue"/>
+  <line x1="195" y1="294" x2="195" y2="316" class="flow-blue"/>
+  <line x1="320" y1="462" x2="422" y2="428" class="flow-blue"/>
+  <line x1="320" y1="548" x2="422" y2="474" class="flow-blue"/>
+  <line x1="320" y1="348" x2="422" y2="418" class="flow-blue"/>
+
+  <rect x="780" y="230" width="250" height="64" rx="12" class="outbound"/>
+  <text x="905" y="256" text-anchor="middle" class="label">JwtService</text>
+  <text x="905" y="276" text-anchor="middle" class="small">gera e valida tokens</text>
+
+  <rect x="780" y="336" width="250" height="64" rx="12" class="outbound"/>
+  <text x="905" y="362" text-anchor="middle" class="label">TrainRepository</text>
+  <text x="905" y="382" text-anchor="middle" class="small">porta de persistencia</text>
+
+  <rect x="780" y="422" width="250" height="64" rx="12" class="outbound"/>
+  <text x="905" y="448" text-anchor="middle" class="label">TrainTemplateRepository</text>
+  <text x="905" y="468" text-anchor="middle" class="small">porta de templates</text>
+
+  <rect x="805" y="550" width="200" height="58" rx="14" class="db"/>
+  <text x="905" y="574" text-anchor="middle" class="label">MongoDB</text>
+  <text x="905" y="594" text-anchor="middle" class="small">train / train_templates</text>
+
+  <line x1="678" y1="428" x2="780" y2="262" class="flow-orange"/>
+  <line x1="678" y1="456" x2="780" y2="368" class="flow-orange"/>
+  <line x1="678" y1="476" x2="780" y2="454" class="flow-orange"/>
+  <line x1="905" y1="486" x2="905" y2="550" class="flow-orange"/>
+  <line x1="905" y1="400" x2="905" y2="550" class="flow-orange"/>
+
+  <rect x="394" y="552" width="312" height="46" rx="14" class="db"/>
+  <text x="550" y="580" text-anchor="middle" class="label">TemplateSeed - carga inicial de templates</text>
+
+  <rect x="112" y="640" width="18" height="18" rx="4" class="inbound"/>
+  <text x="140" y="654" class="tiny">Inbound adapters</text>
+  <rect x="282" y="640" width="18" height="18" rx="4" class="security"/>
+  <text x="310" y="654" class="tiny">Security</text>
+  <rect x="412" y="640" width="18" height="18" rx="4" class="app"/>
+  <text x="440" y="654" class="tiny">Application</text>
+  <rect x="552" y="640" width="18" height="18" rx="4" class="domain"/>
+  <text x="580" y="654" class="tiny">Domain</text>
+  <rect x="672" y="640" width="18" height="18" rx="4" class="outbound"/>
+  <text x="700" y="654" class="tiny">Outbound adapters</text>
+  <rect x="852" y="640" width="18" height="18" rx="4" class="db"/>
+  <text x="880" y="654" class="tiny">Database / seed</text>
+</svg>

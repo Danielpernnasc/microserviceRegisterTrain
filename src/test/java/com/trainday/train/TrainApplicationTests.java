@@ -8,9 +8,9 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 class TrainApplicationTests {
 
-@Test
-	void mainShouldRun() {
-		assertTrue(true);
-	}
+ 	@Test
+    void shouldLoadContext() {
+        assertNotNull(new TrainApplication());
+    }
 
 }

@@ -2,10 +2,13 @@ package com.trainday.train.application;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.trainday.train.api.DTO.request.ExerciseRequest;
 import com.trainday.train.api.DTO.request.TrainRequest;
+import com.trainday.train.api.DTO.request.TrainScheduleRequest;
 import com.trainday.train.domain.models.Exercise;
 import com.trainday.train.domain.models.Train;
 import com.trainday.train.domain.models.TrainSchedule;
@@ -44,16 +47,15 @@ public class TrainService {
                 return exercise;
             }).toList();
 
-            schedule.setExercises(exercises);
+            schedule.setExercise(exercises);
             return schedule;
         }).toList();
 
         train.setSchedules(schedules);
-         System.out.println("ANTES DO SAVE");
+     
 
         Train saved = trainRepository.save(train);
 
-        System.out.println("DEPOIS DO SAVE");
 
         return saved;
     }
@@ -67,6 +69,28 @@ public class TrainService {
         return trainRepository.findById(id).orElseThrow(() -> new RuntimeException("Train not found"));
     }
 
+    private List<TrainSchedule> mapSchedules(List<TrainScheduleRequest> scheduleReqs) {
+    return scheduleReqs.stream().map(scheduleReq -> {
+        TrainSchedule schedule = new TrainSchedule();
+        schedule.setWeekday(scheduleReq.weekday());
+        schedule.setMusclegroup(scheduleReq.musclegroup());
+        schedule.setEmphasis(scheduleReq.emphasis());
+
+        List<Exercise> exercises = scheduleReq.exercises().stream().map(exReq -> {
+            Exercise exercise = new Exercise();
+            exercise.setNameExercise(exReq.nameExercise());
+            exercise.setSeries(exReq.series());
+            exercise.setRepetitions(exReq.repetitions());
+            exercise.setBreakTime(exReq.breakTime());
+            exercise.setObservation(exReq.observation());
+            return exercise;
+        }).toList();
+
+        schedule.setExercise(exercises);
+        return schedule;
+    }).toList();
+}
+
     public Train patchTrainById(String id, TrainRequest req) {
         Train train = trainRepository.findById(id).orElseThrow(() -> new RuntimeException("Train not found"));
         if (req.nameTrain() != null) {
@@ -78,35 +102,22 @@ public class TrainService {
         if (req.description() != null) {
             train.setDescription(req.description());
         }
-        if (req.schedules() != null) {
-            List<TrainSchedule> schedules = req.schedules().stream().map(scheduleReq -> {
-                TrainSchedule schedule = new TrainSchedule();
-                schedule.setWeekday(scheduleReq.weekday());
-                schedule.setMusclegroup(scheduleReq.musclegroup());
-                schedule.setEmphasis(scheduleReq.emphasis());
-
-                List<Exercise> exercises = scheduleReq.exercises().stream().map(exReq -> {
-                    Exercise exercise = new Exercise();
-                    exercise.setNameExercise(exReq.nameExercise());
-                    exercise.setSeries(exReq.series());
-                    exercise.setRepetitions(exReq.repetitions());
-                    exercise.setBreakTime(exReq.breakTime());
-                    exercise.setObservation(exReq.observation());
-                    return exercise;
-                }).toList();
-
-                schedule.setExercises(exercises);
-                return schedule;
-            }).toList();
-
-            train.setSchedules(schedules);
-        }
+     if (req.schedules() != null) {
+            train.setSchedules(mapSchedules(req.schedules()));
+    }
         return trainRepository.save(train);
     }
 
-    public Train updateTrainById(String id){
+          
+    public Train updateTrainById(String id, TrainRequest updateTrainReq) {
         Train train = trainRepository.findById(id).orElseThrow(() -> new RuntimeException("Train not found"));
-        train.setNameTrain("Treino atualizado");
+
+        Optional.ofNullable(updateTrainReq.nameTrain()).ifPresent(train::setNameTrain);
+        Optional.ofNullable(updateTrainReq.category()).ifPresent(train::setCategory);
+        Optional.ofNullable(updateTrainReq.description()).ifPresent(train::setDescription);
+        if (updateTrainReq.schedules() != null) {
+            train.setSchedules(mapSchedules(updateTrainReq.schedules()));
+        }
         return trainRepository.save(train);
     }
 
@@ -115,8 +126,5 @@ public class TrainService {
         trainRepository.delete(train);
         return train;
     }
-    
-
-
 
 }

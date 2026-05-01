@@ -56,7 +56,7 @@ public class TrainSchedule {
         }
 
 
-        public void setExercises(List<Exercise> exercises) {
+        public void setExercise(List<Exercise> exercises) {
                 this.exercises = exercises;
         }
 }

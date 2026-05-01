@@ -1,0 +1,343 @@
+{
+    "nameTrain": "Open Mass Pro",
+    "category": "Open Physique",
+    "description": "Treino de forma proxima e densidade total",
+    "schedules": [
+        {
+            "weekday": "Segunda",
+            "musclegroup": "Peito e ombros (enfase superior)",
+            "emphasis": "Hipertrofia e densidade",
+            "exercises": [
+                {
+                    "nameExercise": "Supino inclinado com halteres",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "90s",
+                    "observation": "Foco na contracao maxima"
+                },
+                {
+                    "nameExercise": "Crucifixo inclinado na maquina",
+                    "series": 4,
+                    "repetitions": "10-12",
+                    "breakTime": "75s",
+                    "observation": "Controle total, focar em alongar"
+                },
+                {
+                    "nameExercise": "Supino reto maquina",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Ultima ate falha com drop"
+                },
+                {
+                    "nameExercise": "Desenvolvimento com halteres sentado",
+                    "series": 4,
+                    "repetitions": "10",
+                    "breakTime": "60s",
+                    "observation": "Tecnica perfeita"
+                },
+                {
+                    "nameExercise": "Elevacao lateral unilateral",
+                    "series": 4,
+                    "repetitions": "15-20",
+                    "breakTime": "60s",
+                    "observation": "Foco na contracao, 20s entre lados"
+                },
+                {
+                    "nameExercise": "Elevacao frontal na corda",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Controle total do movimento"
+                },
+                {
+                    "nameExercise": "Crucifixo invertido maquina",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Foco no deltoide posterior"
+                }
+            ]
+        },
+        {
+            "weekday": "Terca",
+            "musclegroup": "Costas e posteriores de ombro",
+            "emphasis": "Densidade e espessura",
+            "exercises": [
+                {
+                    "nameExercise": "Puxada frente pegada media",
+                    "series": 4,
+                    "repetitions": "10",
+                    "breakTime": "90s",
+                    "observation": "Foco na contracao maxima"
+                },
+                {
+                    "nameExercise": "Remada curvada barra T",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "75s",
+                    "observation": "Estilo Cbum, explosiva na subida, controlada na descida"
+                },
+                {
+                    "nameExercise": "Remada baixa na polia",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "2s isometria e drop ate a falha"
+                },
+                {
+                    "nameExercise": "Puxada unilateral na maquina",
+                    "series": 4,
+                    "repetitions": "10",
+                    "breakTime": "90s",
+                    "observation": "Aquecimento + falha controlada"
+                },
+                {
+                    "nameExercise": "Pullover na corda",
+                    "series": 3,
+                    "repetitions": "15-20",
+                    "breakTime": "60s",
+                    "observation": "Foco na conexao mente-musculo"
+                },
+                {
+                    "nameExercise": "Encolhimento com halteres",
+                    "series": 4,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Trapezio"
+                }
+            ]
+        },
+        {
+            "weekday": "Quarta",
+            "musclegroup": "Pernas completas (quadriceps e posteriores)",
+            "emphasis": "Volume e forca",
+            "exercises": [
+                {
+                    "nameExercise": "Cadeira extensora",
+                    "series": 6,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Pre-exaustao, contracao maxima"
+                },
+                {
+                    "nameExercise": "Agachamento livre",
+                    "series": 5,
+                    "repetitions": "10-12",
+                    "breakTime": "90s",
+                    "observation": "Aumentar carga progressivamente"
+                },
+                {
+                    "nameExercise": "Leg press 45",
+                    "series": 4,
+                    "repetitions": "15",
+                    "breakTime": "75s",
+                    "observation": "Pes juntos/foco no vasto lateral, drop set na ultima"
+                },
+                {
+                    "nameExercise": "Cadeira flexora",
+                    "series": 4,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Isometria 2s na contracao"
+                },
+                {
+                    "nameExercise": "Stiff com halteres",
+                    "series": 4,
+                    "repetitions": "10",
+                    "breakTime": "75s",
+                    "observation": "Foco no alongamento do posterior"
+                },
+                {
+                    "nameExercise": "Panturrilha em pe",
+                    "series": 4,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Pausa de 1s no topo"
+                },
+                {
+                    "nameExercise": "Panturrilha sentado",
+                    "series": 4,
+                    "repetitions": "15-20",
+                    "breakTime": "45s",
+                    "observation": "Foco na contracao maxima"
+                }
+            ]
+        },
+        {
+            "weekday": "Quinta",
+            "musclegroup": "Bracos (biceps + triceps)",
+            "emphasis": "Volume e pico muscular",
+            "exercises": [
+                {
+                    "nameExercise": "Rosca direta barra EZ",
+                    "series": 4,
+                    "repetitions": "10",
+                    "breakTime": "60s",
+                    "observation": "Tecnica perfeita"
+                },
+                {
+                    "nameExercise": "Rosca alternada com supinacao total",
+                    "series": 4,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Controle total do movimento"
+                },
+                {
+                    "nameExercise": "Rosca concentrada",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Foco na contracao maxima"
+                },
+                {
+                    "nameExercise": "Triceps corda",
+                    "series": 4,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Aquecimento"
+                },
+                {
+                    "nameExercise": "Triceps frances com halteres",
+                    "series": 4,
+                    "repetitions": "10",
+                    "breakTime": "75s",
+                    "observation": "Pesado"
+                },
+                {
+                    "nameExercise": "Mergulho maquina ou peso corporal",
+                    "series": 3,
+                    "repetitions": "20",
+                    "breakTime": "60s",
+                    "observation": "Falha tecnica"
+                },
+                {
+                    "nameExercise": "Antebraco rosca inversa barra W",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "45s",
+                    "observation": "Foco na resistencia"
+                }
+            ]
+        },
+        {
+            "weekday": "Sexta",
+            "musclegroup": "Peito e costas (treino combinado - densidade)",
+            "emphasis": "Densidade muscular",
+            "exercises": [
+                {
+                    "nameExercise": "Supino reto maquina pesada",
+                    "series": 4,
+                    "repetitions": "8-10",
+                    "breakTime": "120s",
+                    "observation": "Densidade e forca"
+                },
+                {
+                    "nameExercise": "Puxada frente pegada aberta",
+                    "series": 4,
+                    "repetitions": "10",
+                    "breakTime": "90s",
+                    "observation": "Contracao total"
+                },
+                {
+                    "nameExercise": "Crucifixo inclinado",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "75s",
+                    "observation": "Estilo Cbum, pesada e tecnica"
+                },
+                {
+                    "nameExercise": "Remada curvada barra livre",
+                    "series": 4,
+                    "repetitions": "8",
+                    "breakTime": "60s",
+                    "observation": "Alongar ao maximo"
+                },
+                {
+                    "nameExercise": "Supino declinado com halteres",
+                    "series": 3,
+                    "repetitions": "10",
+                    "breakTime": "60s",
+                    "observation": "Contrair forte"
+                },
+                {
+                    "nameExercise": "Remada unilateral com halter",
+                    "series": 3,
+                    "repetitions": "12",
+                    "breakTime": "60s",
+                    "observation": "Estilo Classic"
+                },
+                {
+                    "nameExercise": "Pull-over com halter",
+                    "series": 3,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Contrair forte"
+                }
+            ]
+        },
+        {
+            "weekday": "Sabado",
+            "musclegroup": "Pernas (enfase gluteo e posterior)",
+            "emphasis": "Hipertrofia posterior",
+            "exercises": [
+                {
+                    "nameExercise": "Cadeira flexora",
+                    "series": 4,
+                    "repetitions": "15",
+                    "breakTime": "90s",
+                    "observation": "Foco na tecnica e profundidade"
+                },
+                {
+                    "nameExercise": "Stiff maquina",
+                    "series": 4,
+                    "repetitions": "10",
+                    "breakTime": "45s",
+                    "observation": "Alongamento total do posterior"
+                },
+                {
+                    "nameExercise": "Leg press pes altos e juntos",
+                    "series": 4,
+                    "repetitions": "15",
+                    "breakTime": "60s",
+                    "observation": "Foco no gluteo"
+                },
+                {
+                    "nameExercise": "Glute kick na polia ou maquina",
+                    "series": 4,
+                    "repetitions": "20 cada perna",
+                    "breakTime": "60s",
+                    "observation": "Queima total"
+                },
+                {
+                    "nameExercise": "Abducao de quadril na maquina",
+                    "series": 4,
+                    "repetitions": "20",
+                    "breakTime": "60s",
+                    "observation": "Foco na contracao maxima"
+                },
+                {
+                    "nameExercise": "Panturrilha sentado",
+                    "series": 5,
+                    "repetitions": "20",
+                    "breakTime": "60s",
+                    "observation": "Pausa de 1s no topo"
+                }
+            ]
+        },
+        {
+            "weekday": "Domingo",
+            "musclegroup": "Descanso",
+            "emphasis": "Recuperacao ativa",
+            "exercises": [
+                {
+                    "nameExercise": "Descanso",
+                    "series": 0,
+                    "repetitions": "-",
+                    "breakTime": "-",
+                    "observation": "Recuperacao ativa: caminhada leve, alongamento ou yoga"
+                }
+            ]
+        }
+    ]
+}
