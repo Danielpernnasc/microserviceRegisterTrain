@@ -1,0 +1,10 @@
+services:
+  train-service:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+    env_file:
+      - .env
