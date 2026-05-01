@@ -3,7 +3,6 @@ package com.trainday.train.api.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.trainday.train.application.TrainService;
 import com.trainday.train.application.TrainTemplateService;
 import com.trainday.train.domain.models.Train;
@@ -21,10 +20,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 @RestController
 @RequestMapping("/trainTemplate")

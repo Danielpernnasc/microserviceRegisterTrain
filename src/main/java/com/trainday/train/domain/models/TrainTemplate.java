@@ -78,6 +78,4 @@ public class TrainTemplate  {
     public void setSchedules(List<TrainSchedule> schedules) {
         this.schedules = schedules;
     }
-
-
 }

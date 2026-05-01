@@ -37,7 +37,7 @@ public class TemplateSeed implements CommandLineRunner {
 
   
 
-    private void saveFile(String path) throws Exception {
+    protected void saveFile(String path) throws Exception {
 
     InputStream is = getClass().getClassLoader().getResourceAsStream(path);
 
