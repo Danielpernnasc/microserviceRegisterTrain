@@ -229,8 +229,8 @@ public class TrainServiceTest {
         when(trainRepository.findById("1")).thenReturn(Optional.of(existingTrain));
         when(trainRepository.save(any(Train.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-            // Agora passa todos os campos preenchidos
-    TrainRequest patchReq = new TrainRequest(
+        // Agora passa todos os campos preenchidos
+        TrainRequest patchReq = new TrainRequest(
         "Treino C",
         "Hipertrofia",
         "Descrição nova",

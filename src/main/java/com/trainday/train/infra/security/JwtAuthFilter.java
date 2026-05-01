@@ -33,21 +33,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             String authHeader = request.getHeader("Authorization");
 
             if(authHeader == null || !authHeader.startsWith("Bearer ")){
-                System.out.println("SEM TOKEN");
                 filterChain.doFilter(request, response);
                 return;
             }
 
             String token = authHeader.substring(7);
 
-            System.out.println("VÁLIDANDO TOKEN...");
-
             try{
 
                 if(jwtService.isTokenValid(token)){
                     String email = jwtService.extractEmail(token);
-
-                    System.out.println("TOKEN OK: " + email);
 
                     UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null, List.of());
 
@@ -55,7 +50,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 }
 
             } catch (Exception e){
-                System.out.println("TOKEN INVÁLIDO: " + e.getMessage());
+                      e.printStackTrace();
             }
 
             filterChain.doFilter(request, response);

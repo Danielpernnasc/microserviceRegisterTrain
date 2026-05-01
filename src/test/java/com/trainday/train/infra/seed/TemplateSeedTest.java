@@ -87,9 +87,7 @@ public class TemplateSeedTest {
         }
 
         templateSeed.run();
-
             verify(trainTemplateRepository, times(4)).save(any(TrainTemplate.class));
-    
     }
 
     @Test
