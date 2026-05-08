@@ -70,12 +70,12 @@ public class TrainServiceTest {
         assertEquals("Segunda-feira", create.getSchedules().get(0).getWeekday());
         assertEquals("Peito", create.getSchedules().get(0).getMusclegroup());
         assertEquals("Força", create.getSchedules().get(0).getEmphasis());
-        assertEquals(1, create.getSchedules().get(0).getExercise().size());
-        assertEquals("Supino Reto", create.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, create.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("10-12", create.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("60", create.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", create.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, create.getSchedules().get(0).getExercises().size());
+        assertEquals("Supino Reto", create.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, create.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("10-12", create.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("60", create.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", create.getSchedules().get(0).getExercises().get(0).getObservation());
 
     }
 
@@ -117,12 +117,12 @@ public class TrainServiceTest {
         assertEquals("Segunda-feira", found.getSchedules().get(0).getWeekday());
         assertEquals("Peito", found.getSchedules().get(0).getMusclegroup());
         assertEquals("Força", found.getSchedules().get(0).getEmphasis());
-        assertEquals(1, found.getSchedules().get(0).getExercise().size());
-        assertEquals("Supino Reto", found.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, found.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("10-12", found.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("60", found.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", found.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, found.getSchedules().get(0).getExercises().size());
+        assertEquals("Supino Reto", found.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, found.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("10-12", found.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("60", found.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", found.getSchedules().get(0).getExercises().get(0).getObservation());
 
     }
 
@@ -162,12 +162,12 @@ public class TrainServiceTest {
         assertEquals("Segunda-feira", found.getSchedules().get(0).getWeekday());
         assertEquals("Peito", found.getSchedules().get(0).getMusclegroup());
         assertEquals("Força", found.getSchedules().get(0).getEmphasis());
-        assertEquals(1, found.getSchedules().get(0).getExercise().size());
-        assertEquals("Supino Reto", found.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, found.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("10-12", found.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("60", found.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", found.getSchedules().get(0).getExercise().get(0).getObservation());     
+        assertEquals(1, found.getSchedules().get(0).getExercises().size());
+        assertEquals("Supino Reto", found.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, found.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("10-12", found.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("60", found.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", found.getSchedules().get(0).getExercises().get(0).getObservation());     
 
     }
 
@@ -317,12 +317,12 @@ public class TrainServiceTest {
         assertEquals("Terça-feira", result.getSchedules().get(0).getWeekday());
         assertEquals("Perna", result.getSchedules().get(0).getMusclegroup());
         assertEquals("Hipertrofia", result.getSchedules().get(0).getEmphasis());
-        assertEquals(1, result.getSchedules().get(0).getExercise().size());
-        assertEquals("Agachamento Livre", result.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, result.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("8-10", result.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("90", result.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Mantenha a postura correta e aumente  o peso progressivamente", result.getSchedules().get(0).getExercise().get(0).getObservation());  
+        assertEquals(1, result.getSchedules().get(0).getExercises().size());
+        assertEquals("Agachamento Livre", result.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, result.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("8-10", result.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("90", result.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Mantenha a postura correta e aumente  o peso progressivamente", result.getSchedules().get(0).getExercises().get(0).getObservation());  
         
 
     }

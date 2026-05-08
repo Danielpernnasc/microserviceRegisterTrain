@@ -21,8 +21,8 @@ public class TrainScheduleTest {
         TrainSchedule schedule = new TrainSchedule();
         schedule.addExercise(exercise);
         
-         assertEquals(1, schedule.getExercise().size());
-          assertEquals("Bench Press", schedule.getExercise().get(0).getNameExercise());
+         assertEquals(1, schedule.getExercises().size());
+          assertEquals("Bench Press", schedule.getExercises().get(0).getNameExercise());
     }
 
    

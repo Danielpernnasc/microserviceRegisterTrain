@@ -68,7 +68,7 @@ public class TrainScheduleExerciseService {
             throw new RuntimeException("Schedule index out of bounds");
         }
 
-        List<Exercise> exercises = schedules.get(scheduleIndex).getExercise();
+        List<Exercise> exercises = schedules.get(scheduleIndex).getExercises();
 
         if (exerciseIndex < 0 || exerciseIndex >= exercises.size()) {
             throw new RuntimeException("Exercise index out of bounds");
@@ -95,7 +95,7 @@ public class TrainScheduleExerciseService {
 
         exercises.set(exerciseIndex, exercise);
 
-        schedules.get(scheduleIndex).setExercise(exercises);
+        schedules.get(scheduleIndex).setExercises(exercises);
 
         return trainRepository.save(train);
     }

@@ -47,7 +47,7 @@ public class TrainService {
                 return exercise;
             }).toList();
 
-            schedule.setExercise(exercises);
+            schedule.setExercises(exercises);
             return schedule;
         }).toList();
 
@@ -86,7 +86,7 @@ public class TrainService {
             return exercise;
         }).toList();
 
-        schedule.setExercise(exercises);
+        schedule.setExercises(exercises);
         return schedule;
     }).toList();
 }
