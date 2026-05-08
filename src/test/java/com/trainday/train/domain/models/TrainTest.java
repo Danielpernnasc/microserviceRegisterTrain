@@ -27,7 +27,7 @@ public class TrainTest {
         schedule.setWeekday("Monday");
         schedule.setMusclegroup("Chest and Triceps");
         schedule.setEmphasis("Hypertrophy");
-        schedule.setExercise(List.of(exercise));
+        schedule.setExercises(List.of(exercise));
 
 
         train.setId("1");
@@ -49,12 +49,12 @@ public class TrainTest {
         assertEquals("Monday", train.getSchedules().get(0).getWeekday());
         assertEquals("Chest and Triceps", train.getSchedules().get(0).getMusclegroup());
         assertEquals("Hypertrophy", train.getSchedules().get(0).getEmphasis());
-        assertEquals(1, train.getSchedules().get(0).getExercise().size());
-        assertEquals("Bench Press", train.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, train.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("10", train.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("60", train.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Use a weight that allows you to complete the repetitions with good form.", train.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, train.getSchedules().get(0).getExercises().size());
+        assertEquals("Bench Press", train.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, train.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("10", train.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("60", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Use a weight that allows you to complete the repetitions with good form.", train.getSchedules().get(0).getExercises().get(0).getObservation());
 
     }
 
@@ -108,12 +108,12 @@ public class TrainTest {
         assertEquals("Monday", train.getSchedules().get(0).getWeekday());
         assertEquals("Chest and Triceps", train.getSchedules().get(0).getMusclegroup());
         assertEquals("Hypertrophy", train.getSchedules().get(0).getEmphasis());
-        assertEquals(1, train.getSchedules().get(0).getExercise().size());
-        assertEquals("Bench Press", train.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, train.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("10", train.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("60", train.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Use a weight that allows you to complete the repetitions with good form.", train.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, train.getSchedules().get(0).getExercises().size());
+        assertEquals("Bench Press", train.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, train.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("10", train.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("60", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Use a weight that allows you to complete the repetitions with good form.", train.getSchedules().get(0).getExercises().get(0).getObservation());
     }
 
 }
