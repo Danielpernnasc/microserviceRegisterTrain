@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +31,7 @@ public class TemplateSeedTest {
     @Mock
     private ObjectMapper objectMapper;
 
+    @Spy
     @InjectMocks
     private TemplateSeed templateSeed;
 
@@ -47,7 +49,7 @@ public class TemplateSeedTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(List.of(exercise));
+        trainSchedule.setExercises(List.of(exercise));
 
         TrainTemplate trainTemplate = new TrainTemplate();
         trainTemplate.setId("1");
@@ -88,6 +90,29 @@ public class TemplateSeedTest {
 
         templateSeed.run();
             verify(trainTemplateRepository, times(4)).save(any(TrainTemplate.class));
+    }
+
+      @Test
+        void shouldExecuteSeedWhenRepositoryIsEmpty() throws Exception {
+        when(trainTemplateRepository.count()).thenReturn(0L);
+
+        doNothing().when(templateSeed).saveFile(anyString());
+
+        templateSeed.run();
+
+        verify(templateSeed).saveFile("trains/treinocompleto_NaturalPhysique.json");
+        verify(templateSeed).saveFile("trains/treinocompleto_MensPhysique.json");
+        verify(templateSeed).saveFile("trains/treinocompleto_ClassicPhysique.json");
+        verify(templateSeed).saveFile("trains/treinocompleto_Open.json");
+    }
+
+    @Test
+    void shouldNotExecuteSeedWhenRepositoryIsNotEmpty() throws Exception {
+        when(trainTemplateRepository.count()).thenReturn(10L);
+
+        templateSeed.run();
+
+        verify(templateSeed, never()).saveFile(anyString());
     }
 
     @Test

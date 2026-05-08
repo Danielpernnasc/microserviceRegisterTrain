@@ -52,7 +52,7 @@ public class TrainTemplateControllerTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(List.of(exercise));
+        trainSchedule.setExercises(List.of(exercise));
 
    
         TrainTemplate trainTemplate = new TrainTemplate();
@@ -101,7 +101,7 @@ public class TrainTemplateControllerTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(List.of(exercise));
+        trainSchedule.setExercises(List.of(exercise));
 
         TrainTemplate train = new TrainTemplate(
             "ahlete@host.com.br",
@@ -128,12 +128,12 @@ public class TrainTemplateControllerTest {
         assertEquals("Segunda-Feira", train.getSchedules().get(0).getWeekday());
         assertEquals("Peito e Ombros", train.getSchedules().get(0).getMusclegroup());
         assertEquals("Volume e densidade peitoral", train.getSchedules().get(0).getEmphasis());
-        assertEquals(1, train.getSchedules().get(0).getExercise().size());
-        assertEquals("Supino reto barra", train.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, train.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("8-10", train.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("90s", train.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("1a leve, ultimas 2 ate falha", train.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, train.getSchedules().get(0).getExercises().size());
+        assertEquals("Supino reto barra", train.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, train.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("8-10", train.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("90s", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("1a leve, ultimas 2 ate falha", train.getSchedules().get(0).getExercises().get(0).getObservation());
 
     }
 

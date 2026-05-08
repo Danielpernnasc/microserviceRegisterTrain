@@ -23,30 +23,30 @@ public class TemplateSeed implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-
         if (repository.count() == 0) {
             saveFile("trains/treinocompleto_NaturalPhysique.json");
             saveFile("trains/treinocompleto_MensPhysique.json");
             saveFile("trains/treinocompleto_ClassicPhysique.json");
             saveFile("trains/treinocompleto_Open.json");
         }
-
-
     }
 
   
 
     protected void saveFile(String path) throws Exception {
 
-    InputStream is = getClass().getClassLoader().getResourceAsStream(path);
+       try (InputStream is = getClass()
+            .getClassLoader()
+            .getResourceAsStream(path)) {
 
-    if (is == null) {
-        throw new RuntimeException("Arquivo não encontrado: " + path);
-    }
+            if (is == null) {
+                throw new RuntimeException("Arquivo não encontrado: " + path);
+            }
 
-      TrainTemplate template = objectMapper.readValue(is, TrainTemplate.class);
-      repository.save(template);
+            TrainTemplate template = objectMapper.readValue(is, TrainTemplate.class);
+
+            repository.save(template);
+        }
     }
 
 }

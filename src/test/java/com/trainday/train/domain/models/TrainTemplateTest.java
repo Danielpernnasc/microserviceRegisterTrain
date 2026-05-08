@@ -22,7 +22,7 @@ public class TrainTemplateTest {
         schedule.setWeekday("Monday");
         schedule.setMusclegroup("Chest and Triceps");
         schedule.setEmphasis("Hypertrophy");
-        schedule.setExercise(List.of(exercise));
+        schedule.setExercises(List.of(exercise));
 
         TrainTemplate traintemplate = new TrainTemplate();
 
@@ -42,12 +42,12 @@ public class TrainTemplateTest {
         assertEquals("Monday", traintemplate.getSchedules().get(0).getWeekday());
         assertEquals("Chest and Triceps", traintemplate.getSchedules().get(0).getMusclegroup());
         assertEquals("Hypertrophy", traintemplate.getSchedules().get(0).getEmphasis());
-        assertEquals(1, traintemplate.getSchedules().get(0).getExercise().size());
-        assertEquals("Bench Press", traintemplate.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, traintemplate.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("10", traintemplate.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("60", traintemplate.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Use a weight that allows you to complete the repetitions with good form.", traintemplate.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, traintemplate.getSchedules().get(0).getExercises().size());
+        assertEquals("Bench Press", traintemplate.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, traintemplate.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("10", traintemplate.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("60", traintemplate.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Use a weight that allows you to complete the repetitions with good form.", traintemplate.getSchedules().get(0).getExercises().get(0).getObservation());
      
     }   
 
@@ -89,12 +89,12 @@ public class TrainTemplateTest {
         assertEquals("Monday", trainT.getSchedules().get(0).getWeekday());
         assertEquals("Chest and Triceps", trainT.getSchedules().get(0).getMusclegroup());
         assertEquals("Hypertrophy", trainT.getSchedules().get(0).getEmphasis());
-        assertEquals(1, trainT.getSchedules().get(0).getExercise().size());
-        assertEquals("Bench Press", trainT.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, trainT.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("10", trainT.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("60", trainT.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Use a weight that allows you to complete the repetitions with good form.", trainT.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, trainT.getSchedules().get(0).getExercises().size());
+        assertEquals("Bench Press", trainT.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, trainT.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("10", trainT.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("60", trainT.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Use a weight that allows you to complete the repetitions with good form.", trainT.getSchedules().get(0).getExercises().get(0).getObservation());
     }
 
 

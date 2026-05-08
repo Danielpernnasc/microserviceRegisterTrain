@@ -47,7 +47,7 @@ public class TrainScheduleExerciseServiceTest {
         existingSchedule.setWeekday("Segunda-Feira");
         existingSchedule.setMusclegroup("Peito");
         existingSchedule.setEmphasis("Volume");
-        existingSchedule.setExercise(List.of());
+        existingSchedule.setExercises(List.of());
 
         existingTrain.setSchedules(new ArrayList<>(List.of(existingSchedule)));
 
@@ -113,7 +113,7 @@ public class TrainScheduleExerciseServiceTest {
         existingSchedule.setWeekday("Segunda-Feira");
         existingSchedule.setMusclegroup("Peito");
         existingSchedule.setEmphasis("Volume");
-        existingSchedule.setExercise(List.of());
+        existingSchedule.setExercises(List.of());
         existingTrain.setSchedules(new ArrayList<>(List.of(existingSchedule)));
 
         Exercise exercise = new Exercise();
@@ -122,7 +122,7 @@ public class TrainScheduleExerciseServiceTest {
         exercise.setRepetitions("6-8");
         exercise.setBreakTime("90s");
         exercise.setObservation("Descida de devagar e explosão na subida");
-        existingSchedule.setExercise(new ArrayList<>(List.of(exercise)));
+        existingSchedule.setExercises(new ArrayList<>(List.of(exercise)));
 
         ExerciseRequest exerciseRequest = new ExerciseRequest(
             "Supino Reto",
@@ -136,11 +136,11 @@ public class TrainScheduleExerciseServiceTest {
         when(trainRepository.save(any(Train.class))).thenAnswer(invocation -> invocation.getArgument(0));
         Train result = trainScheduleExerciseService.patchTrainExercise("1", 0, 0, exerciseRequest);
         assertNotNull(result);
-        assertEquals("Supino Reto", result.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, result.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("6-10", result.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("90s", result.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Descida de devagar e explosão na subida", result.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals("Supino Reto", result.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, result.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("6-10", result.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("90s", result.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Descida de devagar e explosão na subida", result.getSchedules().get(0).getExercises().get(0).getObservation());
         
     }
 
@@ -165,7 +165,7 @@ public class TrainScheduleExerciseServiceTest {
         void shouldThrowWhenExercise_IndexOutOfBounds() {
             TrainSchedule trainSchedule = new TrainSchedule();
             trainSchedule.setWeekday("Segunda-Feira");
-            trainSchedule.setExercise(new ArrayList<>());
+            trainSchedule.setExercises(new ArrayList<>());
 
             Train existingTrain = new Train();
             existingTrain.setId("1");

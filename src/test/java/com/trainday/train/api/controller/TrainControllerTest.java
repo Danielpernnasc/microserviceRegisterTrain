@@ -79,7 +79,7 @@ public class TrainControllerTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(new ArrayList<>(List.of(exercise)));
+        trainSchedule.setExercises(new ArrayList<>(List.of(exercise)));
 
         Train train = new Train();
         train.setNameTrain("Classic Elite Pro");
@@ -103,12 +103,12 @@ public class TrainControllerTest {
          assertEquals("Segunda-Feira", train.getSchedules().get(0).getWeekday());
         assertEquals("Peito e Ombros", train.getSchedules().get(0).getMusclegroup());
         assertEquals("Volume e densidade peitoral", train.getSchedules().get(0).getEmphasis());
-        assertEquals(1, train.getSchedules().get(0).getExercise().size());
-        assertEquals("Supino reto barra", train.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, train.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("8-10", train.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("90s", train.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("1a leve, ultimas 2 ate falha", train.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, train.getSchedules().get(0).getExercises().size());
+        assertEquals("Supino reto barra", train.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, train.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("8-10", train.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("90s", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("1a leve, ultimas 2 ate falha", train.getSchedules().get(0).getExercises().get(0).getObservation());
 
         verify(trainService).createTrain(trainRequest, "123");
 
@@ -130,7 +130,7 @@ public class TrainControllerTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(List.of(exercise));
+        trainSchedule.setExercises(List.of(exercise));
 
         Train train = new Train(
             "1",
@@ -169,7 +169,7 @@ public class TrainControllerTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(List.of(exercise));
+        trainSchedule.setExercises(List.of(exercise));
 
         Train train = new Train(
             "1",
@@ -195,12 +195,12 @@ public class TrainControllerTest {
         assertEquals("Segunda-Feira", train.getSchedules().get(0).getWeekday());
         assertEquals("Peito e Ombros", train.getSchedules().get(0).getMusclegroup());
         assertEquals("Volume e densidade peitoral", train.getSchedules().get(0).getEmphasis());
-        assertEquals(1, train.getSchedules().get(0).getExercise().size());
-        assertEquals("Supino reto barra", train.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(4, train.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("8-10", train.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("90s", train.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("1a leve, ultimas 2 ate falha", train.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, train.getSchedules().get(0).getExercises().size());
+        assertEquals("Supino reto barra", train.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, train.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("8-10", train.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("90s", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("1a leve, ultimas 2 ate falha", train.getSchedules().get(0).getExercises().get(0).getObservation());
 
     }
 
@@ -242,7 +242,7 @@ public class TrainControllerTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(List.of(exercise));
+        trainSchedule.setExercises(List.of(exercise));
 
         Train train = new Train(
             "1",
@@ -292,7 +292,7 @@ public class TrainControllerTest {
         trainSchedule.setWeekday("Sexta-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(List.of(exercise));
+        trainSchedule.setExercises(List.of(exercise));
 
         Train train = new Train(
             "1",
@@ -336,7 +336,7 @@ public class TrainControllerTest {
         trainSchedule.setWeekday("Sexta-Feira");
         trainSchedule.setMusclegroup("Peito e Ombros");
         trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercise(List.of(exercise));
+        trainSchedule.setExercises(List.of(exercise));
 
         Train train = new Train(
             "1",
@@ -352,7 +352,7 @@ public class TrainControllerTest {
         ResponseEntity<Train> result = trainController.patchTrainExerciseById("1", 0, 0, exerciseRequest);
         
         assertNotNull(result);
-        assertEquals("Supino inclinado com halteres", result.getBody().getSchedules().get(0).getExercise().get(0).getNameExercise());
+        assertEquals("Supino inclinado com halteres", result.getBody().getSchedules().get(0).getExercises().get(0).getNameExercise());
     }
 
     @Test
@@ -394,7 +394,7 @@ public class TrainControllerTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e ombros (enfase superior)");
         trainSchedule.setEmphasis("Hipertrofia e densidade");
-        trainSchedule.setExercise(new ArrayList<>(List.of(exercise)));
+        trainSchedule.setExercises(new ArrayList<>(List.of(exercise)));
 
         Train train = new Train();
         train.setId("1");
@@ -420,12 +420,12 @@ public class TrainControllerTest {
         assertEquals("Segunda-Feira", train.getSchedules().get(0).getWeekday());
         assertEquals("Peito e ombros (enfase superior)", train.getSchedules().get(0).getMusclegroup());
         assertEquals("Hipertrofia e densidade", train.getSchedules().get(0).getEmphasis());
-        assertEquals(1, train.getSchedules().get(0).getExercise().size());
-        assertEquals("Supino inclinado com halteres", train.getSchedules().get(0).getExercise().get(0).getNameExercise());
-        assertEquals(5, train.getSchedules().get(0).getExercise().get(0).getSeries());
-        assertEquals("6-10", train.getSchedules().get(0).getExercise().get(0).getRepetitions());
-        assertEquals("90s", train.getSchedules().get(0).getExercise().get(0).getBreakTime());
-        assertEquals("Foco na contracao maxima", train.getSchedules().get(0).getExercise().get(0).getObservation());
+        assertEquals(1, train.getSchedules().get(0).getExercises().size());
+        assertEquals("Supino inclinado com halteres", train.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(5, train.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("6-10", train.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("90s", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Foco na contracao maxima", train.getSchedules().get(0).getExercises().get(0).getObservation());
     }
 
     @Test
@@ -442,7 +442,7 @@ public class TrainControllerTest {
         trainSchedule.setWeekday("Segunda-Feira");
         trainSchedule.setMusclegroup("Peito e ombros (enfase superior)");
         trainSchedule.setEmphasis("Hipertrofia e densidade");
-        trainSchedule.setExercise(new ArrayList<>(List.of(exercise)));
+        trainSchedule.setExercises(new ArrayList<>(List.of(exercise)));
 
         LocalDateTime now = LocalDateTime.now();
         Train train = new Train();
