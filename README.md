@@ -321,7 +321,7 @@ http://localhost:8081/v3/api-docs
 
 | Metodo | Rota | Autenticacao | Descricao |
 |---|---|---|---|
-| GET | `/train/my-trains` | Publica | Lista treinos cadastrados |
+| GET | `/train/my-trains{athleteid}` | Private | Lista treinos cadastrados para o atleta |
 | POST | `/train` | Bearer Token | Cria um treino para o atleta autenticado |
 | GET | `/train/my-trains/{id}` | Bearer Token | Busca treino por ID |
 | PATCH | `/train/my-trains/{id}` | Bearer Token | Atualiza parcialmente um treino |

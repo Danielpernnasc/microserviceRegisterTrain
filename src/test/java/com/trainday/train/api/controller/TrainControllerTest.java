@@ -1,7 +1,6 @@
 package com.trainday.train.api.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDateTime;
@@ -14,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 
 import com.trainday.train.api.DTO.request.ExerciseRequest;
 import com.trainday.train.api.DTO.request.TrainRequest;
@@ -83,19 +83,26 @@ public class TrainControllerTest {
 
         Train train = new Train();
         train.setNameTrain("Classic Elite Pro");
-        train.setAthleteId("123");
+        train.setAthleteId("dpericles6@gmail.com");
         train.setCategory("Classic Physique");
         train.setDescription("Divisao semanal avan‡ada estilo Classic Physique");
         train.setCreatedAt(now);
         train.setSchedules(new ArrayList<>(List.of(trainSchedule)));
 
-        when(trainService.createTrain( trainRequest, "123")).thenReturn(train);
-        when(jwtService.extractEmail(any())).thenReturn("123");
+        Authentication  authentication = mock(Authentication.class);
 
-        ResponseEntity<Train> created = trainController.createTrain(trainRequest, "Bearer fake-token");
+        when(trainService.createTrain(trainRequest, "dpericles6@gmail.com"))
+       .thenReturn(train);
 
+        when(authentication.getName()).thenReturn("dpericles6@gmail.com");
+
+
+        ResponseEntity<Train> created = trainController.createTrain(trainRequest, authentication);
+
+        assertNotNull(created);
+      
         assertEquals("Classic Elite Pro", created.getBody().getNameTrain());
-        assertEquals("123", created.getBody().getAthleteId());
+        assertEquals("dpericles6@gmail.com", created.getBody().getAthleteId());
         assertEquals("Classic Physique", created.getBody().getCategory());
         assertEquals("Divisao semanal avan‡ada estilo Classic Physique", created.getBody().getDescription());
         assertEquals(now, created.getBody().getCreatedAt());
@@ -110,48 +117,11 @@ public class TrainControllerTest {
         assertEquals("90s", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
         assertEquals("1a leve, ultimas 2 ate falha", train.getSchedules().get(0).getExercises().get(0).getObservation());
 
-        verify(trainService).createTrain(trainRequest, "123");
+        verify(trainService).createTrain(trainRequest, "dpericles6@gmail.com");
 
     }
 
-    @Test
-    void shouldlistTrains(){
-
-        LocalDateTime now = LocalDateTime.now();
-
-        Exercise exercise = new Exercise();
-        exercise.setNameExercise("Supino reto barra");
-        exercise.setSeries(4);
-        exercise.setRepetitions("8-10");
-        exercise.setBreakTime("90s");
-        exercise.setObservation("1a leve, ultimas 2 ate falha");
-
-        TrainSchedule trainSchedule = new TrainSchedule();
-        trainSchedule.setWeekday("Segunda-Feira");
-        trainSchedule.setMusclegroup("Peito e Ombros");
-        trainSchedule.setEmphasis("Volume e densidade peitoral");
-        trainSchedule.setExercises(List.of(exercise));
-
-        Train train = new Train(
-            "1",
-            "ahlete@host.com.br",
-            "Classic Elite Pro",
-            "Classic Physique",
-            "Divisao semanal avan‡ada estilo Classic Physique", 
-            now,
-            List.of(trainSchedule)
    
-        );
-        List<Train> trains = List.of(train);
-
-       
-        when(trainService.listTrains()).thenReturn(trains);
-
-        ResponseEntity<List<Train>> result = trainController.listTrains();
-
-        assertEquals(1, result.getBody().size());
-        assertEquals("Classic Elite Pro", result.getBody().get(0).getNameTrain());
-    }
 
     @Test
     void shouldgetTrainById(){
@@ -172,25 +142,41 @@ public class TrainControllerTest {
         trainSchedule.setExercises(List.of(exercise));
 
         Train train = new Train(
-            "1",
-            "ahlete@host.com.br",
-            "Classic Elite Pro",
-            "Classic Physique",
-            "Divisao semanal avan‡ada estilo Classic Physique", 
+            "6a1b8bc47747b33af4eef96b",
+            "Mens Aesthetic Flow",
+            "daniel@host.com.br",
+            "Mens Physique",
+            "Foco em simetria, cintura fina e defini‡ao muscular", 
             now,
             List.of(trainSchedule)
         );
 
-        when(trainService.getTrainById("1")).thenReturn(train);
+        
+        Authentication  authentication = mock(Authentication.class);
 
-        ResponseEntity<Train> result = trainController.getTrainById("1");
+        when(authentication.getName()).thenReturn("dpericles6@gmail.com");
 
-        assertEquals("1", result.getBody().getId());
-        assertEquals("ahlete@host.com.br", result.getBody().getAthleteId());
-        assertEquals("Classic Elite Pro", result.getBody().getNameTrain());
-        assertEquals("Classic Physique", result.getBody().getCategory());
-        assertEquals("Divisao semanal avan‡ada estilo Classic Physique", result.getBody().getDescription());
-        assertEquals(now, result.getBody().getCreatedAt());
+
+        when(trainService.getTrainByAtlheteId("dpericles6@gmail.com")).thenReturn(List.of(train));
+            // when(trainRepository.findAll()).thenReturn(List.of(train));
+
+        ResponseEntity<List<Train>> result = trainController.getMyTrain(authentication);
+
+  
+        assertNotNull(result.getBody());
+
+        List<Train> trains = result.getBody();
+
+        assertEquals(1, trains.size());
+
+        Train trainResult = trains.get(0);
+
+        assertEquals("6a1b8bc47747b33af4eef96b", trainResult.getId());
+        assertEquals("Mens Aesthetic Flow", trainResult.getNameTrain());
+        assertEquals("daniel@host.com.br", trainResult.getAthleteId());
+        assertEquals("Mens Physique", trainResult.getCategory());
+        assertEquals("Foco em simetria, cintura fina e defini‡ao muscular", trainResult.getDescription());
+        assertEquals(now, trainResult.getCreatedAt());
         assertEquals(1, train.getSchedules().size());
         assertEquals("Segunda-Feira", train.getSchedules().get(0).getWeekday());
         assertEquals("Peito e Ombros", train.getSchedules().get(0).getMusclegroup());

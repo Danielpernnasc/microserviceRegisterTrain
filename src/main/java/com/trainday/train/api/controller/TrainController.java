@@ -13,6 +13,7 @@ import com.trainday.train.infra.security.JwtService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,23 +48,20 @@ public class TrainController {
     @PostMapping
     public ResponseEntity<Train> createTrain(
         @RequestBody TrainRequest req,
-        @RequestHeader("Authorization") String authHeader) {
+         Authentication authentication) {
         log.info("Received request to create train: {}", req);
-        String token = authHeader.substring(7); // remove "Bearer "
-        String atletaId = jwtService.extractEmail(token); // pega o id do atl
-        Train createdTrain = trainService.createTrain(req, atletaId);
+        String athleteId = authentication.getName();
+        Train createdTrain = trainService.createTrain(req, athleteId);
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(createdTrain);
     }
 
-    @GetMapping("/my-trains")
-    public ResponseEntity<List<Train>> listTrains() {
-        return ResponseEntity.ok(trainService.listTrains());
-    }
+  
 
-    @GetMapping("/my-trains/{id}")
-    public ResponseEntity<Train> getTrainById(@PathVariable String id) {
-        return ResponseEntity.ok(trainService.getTrainById(id));
+    @GetMapping("/my-trains/{athleteId}")
+    public ResponseEntity <List<Train>> getMyTrain(Authentication authentication) {
+        String athleteId = authentication.getName();
+            return ResponseEntity.ok(trainService.getTrainByAtlheteId(athleteId));
     }
 
     @PatchMapping("/my-trains/{id}")

@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 public class Train {
     @Id
     private String id;
-    private String athleteId;
     private String  nameTrain;
+    private String athleteId;
     private String category;
 
     private String description;

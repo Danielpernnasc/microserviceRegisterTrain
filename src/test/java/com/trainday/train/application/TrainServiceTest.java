@@ -79,61 +79,14 @@ public class TrainServiceTest {
 
     }
 
-    @Test
-    void shouldlistTrain(){
-
-        Train train = new Train(
-            "1",
-            "athlete123",
-            "Treino A",
-            "Força",
-            "Treino focado em força para membros superiores",
-            LocalDateTime.now(),
-            List.of(new TrainSchedule(
-                "Segunda-feira",
-                "Peito",
-                "Força",
-                List.of(new Exercise(
-                    "Supino Reto",
-                    4,
-                    "10-12",
-                    "60",
-                    "Use uma barra de 20kg e aumente o peso progressivamente"
-                ))
-            ))
-        );
-
-        when(trainRepository.findAll()).thenReturn(List.of(train));
-
-        Train found = trainService.listTrains().get(0);
-            
-        assertNotNull(found);
-        assertEquals("Treino A", found.getNameTrain());
-        assertEquals("athlete123", found.getAthleteId());
-        assertEquals("Força", found.getCategory());
-        assertEquals("Treino focado em força para membros superiores", found.getDescription());
-        assertEquals(LocalDateTime.now().getDayOfYear(), found.getCreatedAt().getDayOfYear());
-        assertEquals(1, found.getSchedules().size());
-        assertEquals("Segunda-feira", found.getSchedules().get(0).getWeekday());
-        assertEquals("Peito", found.getSchedules().get(0).getMusclegroup());
-        assertEquals("Força", found.getSchedules().get(0).getEmphasis());
-        assertEquals(1, found.getSchedules().get(0).getExercises().size());
-        assertEquals("Supino Reto", found.getSchedules().get(0).getExercises().get(0).getNameExercise());
-        assertEquals(4, found.getSchedules().get(0).getExercises().get(0).getSeries());
-        assertEquals("10-12", found.getSchedules().get(0).getExercises().get(0).getRepetitions());
-        assertEquals("60", found.getSchedules().get(0).getExercises().get(0).getBreakTime());
-        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", found.getSchedules().get(0).getExercises().get(0).getObservation());
-
-    }
-
-    @Test
+   @Test
     void shouldgetTrainforId(){
         Train train = new Train(
             "1",
-            "athlete123",
-            "Treino A",
-            "Força",
-            "Treino focado em força para membros superiores",
+            "Mens Aesthetic Flow",
+            "daniel@host.com.br",
+            "Mens Physique",
+            "Foco em simetria, cintura fina e defini‡ao muscular",
             LocalDateTime.now(),
             List.of(new TrainSchedule(
                 "Segunda-feira",
@@ -149,36 +102,39 @@ public class TrainServiceTest {
             ))
         );
 
-       when(trainRepository.findById("1")).thenReturn(java.util.Optional.of(train));
+       when(trainRepository.findByAthleteId("daniel@host.com.br")).thenReturn(List.of(train));
        
-       Train found = trainService.getTrainById("1");
+       List<Train> found = trainService.getTrainByAtlheteId("daniel@host.com.br");
          assertNotNull(found);
-        assertEquals("Treino A", found.getNameTrain());
-        assertEquals("athlete123", found.getAthleteId());
-        assertEquals("Força", found.getCategory());
-        assertEquals("Treino focado em força para membros superiores", found.getDescription());
-        assertEquals(LocalDateTime.now().getDayOfYear(), found.getCreatedAt().getDayOfYear());
-        assertEquals(1, found.getSchedules().size());
-        assertEquals("Segunda-feira", found.getSchedules().get(0).getWeekday());
-        assertEquals("Peito", found.getSchedules().get(0).getMusclegroup());
-        assertEquals("Força", found.getSchedules().get(0).getEmphasis());
-        assertEquals(1, found.getSchedules().get(0).getExercises().size());
-        assertEquals("Supino Reto", found.getSchedules().get(0).getExercises().get(0).getNameExercise());
-        assertEquals(4, found.getSchedules().get(0).getExercises().get(0).getSeries());
-        assertEquals("10-12", found.getSchedules().get(0).getExercises().get(0).getRepetitions());
-        assertEquals("60", found.getSchedules().get(0).getExercises().get(0).getBreakTime());
-        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", found.getSchedules().get(0).getExercises().get(0).getObservation());     
+         assertEquals(1, found.size());
+         Train trainFound = found.get(0);
+   
+        assertEquals("Mens Aesthetic Flow", trainFound.getNameTrain());
+        assertEquals("daniel@host.com.br", trainFound.getAthleteId());
+        assertEquals("Mens Physique", trainFound.getCategory());
+        assertEquals("Foco em simetria, cintura fina e defini‡ao muscular", trainFound.getDescription());
+        assertEquals(LocalDateTime.now().getDayOfYear(), trainFound.getCreatedAt().getDayOfYear());
+        assertEquals(1, trainFound.getSchedules().size());
+        assertEquals("Segunda-feira", trainFound.getSchedules().get(0).getWeekday());
+        assertEquals("Peito", trainFound.getSchedules().get(0).getMusclegroup());
+        assertEquals("Força", trainFound.getSchedules().get(0).getEmphasis());
+        assertEquals(1, trainFound.getSchedules().get(0).getExercises().size());
+        assertEquals("Supino Reto", trainFound.getSchedules().get(0).getExercises().get(0).getNameExercise());
+        assertEquals(4, trainFound.getSchedules().get(0).getExercises().get(0).getSeries());
+        assertEquals("10-12", trainFound.getSchedules().get(0).getExercises().get(0).getRepetitions());
+        assertEquals("60", trainFound.getSchedules().get(0).getExercises().get(0).getBreakTime());
+        assertEquals("Use uma barra de 20kg e aumente o peso progressivamente", trainFound.getSchedules().get(0).getExercises().get(0).getObservation());     
 
     }
 
     @Test
     void shouldPatchTrainById(){
         Train train = new Train(
-                  "1",
-            "athlete123",
-            "Treino A",
-            "Força",
-            "Treino focado em força para membros superiores",
+          "1",
+            "Mens Aesthetic Flow",
+            "daniel@host.com.br",
+            "Mens Physique",
+            "Foco em simetria, cintura fina e defini‡ao muscular",
             LocalDateTime.now(),
             List.of(new TrainSchedule(
                 "Segunda-feira",
@@ -198,7 +154,7 @@ public class TrainServiceTest {
         when(trainRepository.save(any(Train.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
       TrainRequest patchReq = new TrainRequest(
-        "Treino C",  // só isso muda
+        "Open Mass Pro",  // só isso muda
         null,
         null,
         null,
@@ -208,9 +164,10 @@ public class TrainServiceTest {
      Train result = trainService.patchTrainById("1", patchReq);
 
     assertNotNull(result);
-    assertEquals("Treino C", result.getNameTrain());         // mudou
-    assertEquals("Força", result.getCategory());              // manteve
-    assertEquals("athlete123", result.getAthleteId());        // manteve
+    assertEquals("Open Mass Pro", result.getNameTrain());         // mudou
+    assertEquals(  "daniel@host.com.br", result.getAthleteId());        // manteve
+    assertEquals("Mens Physique", result.getCategory());    
+    assertEquals("Foco em simetria, cintura fina e defini‡ao muscular", result.getDescription());          // manteve
     assertEquals(1, result.getSchedules().size());            // manteve
 
     }

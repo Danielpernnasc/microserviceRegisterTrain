@@ -12,7 +12,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private static final String TRAINS = "/train/**";
-    private static final String TRAIN_MY_TRAINS = "/train/my-trains";
     private static final String TRAIN_MY_TRAINS_BY_ID = "/train/my-trains/**";
     private static final String TRAIN_SCHEDULE = "/train/my-trains/*/schedule/*";
     private static final String TRAIN_SCHEDULE_EXERCISE = "/train/my-trains/*/schedule/*/exercise/*";
@@ -46,7 +45,6 @@ public class SecurityConfig {
 
                 // Train endpoints públicos
                 .requestMatchers(HttpMethod.POST, TRAINS).authenticated()
-                .requestMatchers(HttpMethod.GET, TRAIN_MY_TRAINS).permitAll()
                 .requestMatchers(HttpMethod.GET, TRAIN_MY_TRAINS_BY_ID).authenticated()
                 .requestMatchers(HttpMethod.PUT, TRAIN_MY_TRAINS_BY_ID).authenticated()
                 .requestMatchers(HttpMethod.DELETE, TRAIN_MY_TRAINS_BY_ID).authenticated()
