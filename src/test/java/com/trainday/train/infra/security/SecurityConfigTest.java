@@ -58,12 +58,6 @@ public class SecurityConfigTest {
     }
 
     @Test
-    void shouldAllowPublicTrainListEndpointWithoutToken() throws Exception {
-        mockMvc.perform(get("/train/my-trains"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     void shouldAllowPublicTemplatesEndpointWithoutToken() throws Exception {
         mockMvc.perform(get("/trainTemplate/templates"))
                 .andExpect(status().isOk());

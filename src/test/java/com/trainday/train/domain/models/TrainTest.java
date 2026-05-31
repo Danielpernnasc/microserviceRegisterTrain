@@ -31,7 +31,7 @@ public class TrainTest {
 
 
         train.setId("1");
-        train.setAthleteId("1");
+        train.setAthleteId("athlete@host.com");
         train.setNameTrain("Daniel");
         train.setCategory("Natural Physique");
         train.setDescription("Train for natural physique");
@@ -40,7 +40,7 @@ public class TrainTest {
      
 
         assertEquals("1", train.getId());
-        assertEquals("1", train.getAthleteId());
+        assertEquals("athlete@host.com", train.getAthleteId());
         assertEquals("Daniel", train.getNameTrain());
         assertEquals("Natural Physique", train.getCategory());
         assertEquals("Train for natural physique", train.getDescription());
@@ -90,8 +90,8 @@ public class TrainTest {
 
         Train train = new Train(
             "1",
-            "1",
             "Chest and Triceps",
+            "athlete@host.com",
             "Natural Physique",
             "Treino Natural",
             LocalDateTime.now(),
@@ -99,7 +99,7 @@ public class TrainTest {
         );
 
         assertEquals("1", train.getId());
-        assertEquals("1", train.getAthleteId());
+        assertEquals("athlete@host.com", train.getAthleteId());
         assertEquals("Chest and Triceps", train.getNameTrain());
         assertEquals("Natural Physique", train.getCategory());
         assertEquals("Treino Natural", train.getDescription());

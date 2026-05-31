@@ -61,12 +61,9 @@ public class TrainService {
     }
 
  
-    public List<Train> listTrains() {
-        return trainRepository.findAll();
-    }
 
-    public Train getTrainById(String id) {
-        return trainRepository.findById(id).orElseThrow(() -> new RuntimeException("Train not found"));
+    public List<Train> getTrainByAtlheteId(String AtlheletId) {
+        return trainRepository.findByAthleteId(AtlheletId);
     }
 
     private List<TrainSchedule> mapSchedules(List<TrainScheduleRequest> scheduleReqs) {
