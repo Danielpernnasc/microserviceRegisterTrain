@@ -6,14 +6,12 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.trainday.train.api.DTO.request.ExerciseRequest;
 import com.trainday.train.api.DTO.request.TrainRequest;
 import com.trainday.train.api.DTO.request.TrainScheduleRequest;
 import com.trainday.train.domain.models.Exercise;
 import com.trainday.train.domain.models.Train;
 import com.trainday.train.domain.models.TrainSchedule;
 import com.trainday.train.domain.repository.TrainRepository;
-
 
 @Service
 public class TrainService {
@@ -31,7 +29,7 @@ public class TrainService {
         train.setCategory(req.category());
         train.setDescription(req.description());
         train.setCreatedAt(req.createdAt() != null ? req.createdAt() : LocalDateTime.now());
-           List<TrainSchedule> schedules = req.schedules().stream().map(scheduleReq -> {
+        List<TrainSchedule> schedules = req.schedules().stream().map(scheduleReq -> {
             TrainSchedule schedule = new TrainSchedule();
             schedule.setWeekday(scheduleReq.weekday());
             schedule.setMusclegroup(scheduleReq.musclegroup());
@@ -52,41 +50,37 @@ public class TrainService {
         }).toList();
 
         train.setSchedules(schedules);
-     
 
         Train saved = trainRepository.save(train);
 
-
         return saved;
     }
-
- 
 
     public List<Train> getTrainByAtlheteId(String AtlheletId) {
         return trainRepository.findByAthleteId(AtlheletId);
     }
 
     private List<TrainSchedule> mapSchedules(List<TrainScheduleRequest> scheduleReqs) {
-    return scheduleReqs.stream().map(scheduleReq -> {
-        TrainSchedule schedule = new TrainSchedule();
-        schedule.setWeekday(scheduleReq.weekday());
-        schedule.setMusclegroup(scheduleReq.musclegroup());
-        schedule.setEmphasis(scheduleReq.emphasis());
+        return scheduleReqs.stream().map(scheduleReq -> {
+            TrainSchedule schedule = new TrainSchedule();
+            schedule.setWeekday(scheduleReq.weekday());
+            schedule.setMusclegroup(scheduleReq.musclegroup());
+            schedule.setEmphasis(scheduleReq.emphasis());
 
-        List<Exercise> exercises = scheduleReq.exercises().stream().map(exReq -> {
-            Exercise exercise = new Exercise();
-            exercise.setNameExercise(exReq.nameExercise());
-            exercise.setSeries(exReq.series());
-            exercise.setRepetitions(exReq.repetitions());
-            exercise.setBreakTime(exReq.breakTime());
-            exercise.setObservation(exReq.observation());
-            return exercise;
+            List<Exercise> exercises = scheduleReq.exercises().stream().map(exReq -> {
+                Exercise exercise = new Exercise();
+                exercise.setNameExercise(exReq.nameExercise());
+                exercise.setSeries(exReq.series());
+                exercise.setRepetitions(exReq.repetitions());
+                exercise.setBreakTime(exReq.breakTime());
+                exercise.setObservation(exReq.observation());
+                return exercise;
+            }).toList();
+
+            schedule.setExercises(exercises);
+            return schedule;
         }).toList();
-
-        schedule.setExercises(exercises);
-        return schedule;
-    }).toList();
-}
+    }
 
     public Train patchTrainById(String id, TrainRequest req) {
         Train train = trainRepository.findById(id).orElseThrow(() -> new RuntimeException("Train not found"));
@@ -99,13 +93,12 @@ public class TrainService {
         if (req.description() != null) {
             train.setDescription(req.description());
         }
-     if (req.schedules() != null) {
+        if (req.schedules() != null) {
             train.setSchedules(mapSchedules(req.schedules()));
-    }
+        }
         return trainRepository.save(train);
     }
 
-          
     public Train updateTrainById(String id, TrainRequest updateTrainReq) {
         Train train = trainRepository.findById(id).orElseThrow(() -> new RuntimeException("Train not found"));
 
@@ -118,7 +111,7 @@ public class TrainService {
         return trainRepository.save(train);
     }
 
-    public Train deleteTrainById(String id){
+    public Train deleteTrainById(String id) {
         Train train = trainRepository.findById(id).orElseThrow(() -> new RuntimeException("Train not found"));
         trainRepository.delete(train);
         return train;

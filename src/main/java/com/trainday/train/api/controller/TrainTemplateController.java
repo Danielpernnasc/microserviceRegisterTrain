@@ -7,7 +7,7 @@ import com.trainday.train.application.TrainService;
 import com.trainday.train.application.TrainTemplateService;
 import com.trainday.train.domain.models.Train;
 import com.trainday.train.domain.models.TrainTemplate;
-import com.trainday.train.infra.security.JwtService;
+import com.trainday.train.infra.service.JwtService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,24 +28,24 @@ public class TrainTemplateController {
     private final TrainTemplateService trainTemplateService;
     private static final Logger log = LoggerFactory.getLogger(TrainService.class);
     private final JwtService jwtService;
+
     public TrainTemplateController(
-        TrainTemplateService trainTemplateService,
-        JwtService jwtService
-    ) {
-        
+            TrainTemplateService trainTemplateService,
+            JwtService jwtService) {
+
         this.trainTemplateService = trainTemplateService;
         this.jwtService = jwtService;
     }
 
-   @PostMapping("/templates/{id}/apply")
-   public ResponseEntity<Train> applyTemplateTrain(
-    @PathVariable String id,
-    @RequestHeader("Authorization") String authHeader
+    @PostMapping("/templates/{id}/apply")
+    public ResponseEntity<Train> applyTemplateTrain(
+            @PathVariable String id,
+            @RequestHeader("Authorization") String authHeader
 
-   ){
+    ) {
         log.info("Received request to create train: {}", id);
         String token = authHeader.substring(7);
-        String athleteId = jwtService.extractEmail(token);
+        String athleteId = jwtService.extractSubject(token);
         Train applyTrain = trainTemplateService.applyTemplateTrain(id, athleteId);
         return ResponseEntity.status(HttpStatus.CREATED).body(applyTrain);
     }
@@ -54,11 +54,5 @@ public class TrainTemplateController {
     public ResponseEntity<List<TrainTemplate>> getTrainTemplate() {
         return ResponseEntity.ok(trainTemplateService.getTrainTemplate());
     }
-
-   
-    
-    
-
-
 
 }
