@@ -9,4 +9,6 @@ import com.trainday.train.domain.models.PhysicalEducationProfessional;
 public interface RepositoryPhyEdProf extends MongoRepository<PhysicalEducationProfessional, String> {
     Optional<PhysicalEducationProfessional> findByCref(String cref);
 
+    Optional<PhysicalEducationProfessional> findByEmail(String email);
+
 }

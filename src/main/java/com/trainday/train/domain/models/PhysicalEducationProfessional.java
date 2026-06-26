@@ -25,5 +25,4 @@ public class PhysicalEducationProfessional {
     private String address;
     private String cref;
     private Role role;
-    private String userId;
 }

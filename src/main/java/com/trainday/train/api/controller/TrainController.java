@@ -31,23 +31,21 @@ public class TrainController {
 
     private final TrainService trainService;
     private static final Logger log = LoggerFactory.getLogger(TrainService.class);
-    private final JwtService jwtService;
     private final TrainScheduleExerciseService trainScheduleExerciseService;
 
     public TrainController(
             TrainService trainService,
-            JwtService jwtService,
             TrainScheduleExerciseService trainScheduleExerciseService) {
         this.trainService = trainService;
-        this.jwtService = jwtService;
         this.trainScheduleExerciseService = trainScheduleExerciseService;
 
     }
 
-    @PostMapping
+    @PostMapping("/{cref}")
     public ResponseEntity<Train> createTrain(
             @RequestBody TrainRequest req,
             Authentication authentication) {
+
         log.info("Received request to create train: {}", req);
         String athleteId = authentication.getName();
         Train createdTrain = trainService.createTrain(req, athleteId);
@@ -55,46 +53,46 @@ public class TrainController {
                 .body(createdTrain);
     }
 
-    @GetMapping("/my-trains/{athleteId}")
-    public ResponseEntity<List<Train>> getMyTrain(Authentication authentication) {
-        String athleteId = authentication.getName();
-        return ResponseEntity.ok(trainService.getTrainByAtlheteId(athleteId));
+    @GetMapping("/athlete/cpf/{cpf}")
+    public ResponseEntity<List<Train>> getTrainByCpf(
+            @PathVariable String cpf) {
+        return ResponseEntity.ok(trainService.getTrainByCpf(cpf));
     }
 
-    @PatchMapping("/my-trains/{id}")
-    public ResponseEntity<Train> patchTrainById(@PathVariable String id, @RequestBody TrainRequest req) {
-        return ResponseEntity.ok(trainService.patchTrainById(id, req));
+    @PatchMapping("/my-trains/{cpf}")
+    public ResponseEntity<Train> patchTrainByCpf(@PathVariable String cpf, @RequestBody TrainRequest req) {
+        return ResponseEntity.ok(trainService.patchTrainByCpf(cpf, req));
     }
 
-    @PatchMapping("/my-trains/{id}/schedule/{index}")
-    public ResponseEntity<Train> patchTrainScheduleById(
-            @PathVariable String id,
+    @PatchMapping("/my-trains/{cpf}/schedule/{index}")
+    public ResponseEntity<Train> patchTrainScheduleByCpf(
+            @PathVariable String cpf,
             @PathVariable int index,
             @RequestBody TrainScheduleRequest req) {
-        Train train = trainScheduleExerciseService.patchTrainScheduleById(id, index, req);
+        Train train = trainScheduleExerciseService.patchTrainScheduleById(cpf, index, req);
 
         return ResponseEntity.ok(train);
     }
 
-    @PatchMapping("/my-trains/{id}/schedule/{scheduleIndex}/exercise/{exerciseIndex}")
-    public ResponseEntity<Train> patchTrainExerciseById(
-            @PathVariable String id,
+    @PatchMapping("/my-trains/{cpf}/schedule/{scheduleIndex}/exercise/{exerciseIndex}")
+    public ResponseEntity<Train> patchTrainExerciseByCpf(
+            @PathVariable String cpf,
             @PathVariable int scheduleIndex,
             @PathVariable int exerciseIndex,
             @RequestBody ExerciseRequest req) {
 
-        Train train = trainScheduleExerciseService.patchTrainExercise(id, scheduleIndex, exerciseIndex, req);
+        Train train = trainScheduleExerciseService.patchTrainExercise(cpf, scheduleIndex, exerciseIndex, req);
         return ResponseEntity.ok(train);
     }
 
-    @PutMapping("/my-trains/{id}")
-    public ResponseEntity<Train> updateTrainById(@PathVariable String id, @RequestBody TrainRequest updateTrainReq) {
-        return ResponseEntity.ok(trainService.updateTrainById(id, updateTrainReq));
+    @PutMapping("/my-trains/{cpf}")
+    public ResponseEntity<Train> updateTrainById(@PathVariable String cpf, @RequestBody TrainRequest updateTrainReq) {
+        return ResponseEntity.ok(trainService.updateTrainByCpf(cpf, updateTrainReq));
     }
 
-    @DeleteMapping("/my-trains/{id}")
-    public ResponseEntity<Void> deleteTrainById(@PathVariable String id) {
-        trainService.deleteTrainById(id);
+    @DeleteMapping("/my-trains/{cpf}")
+    public ResponseEntity<Void> deleteTrainById(@PathVariable String cpf) {
+        trainService.deleteTrainByCpf(cpf);
         return ResponseEntity.noContent().build();
     }
 

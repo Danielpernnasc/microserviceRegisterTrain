@@ -36,7 +36,7 @@ public class PhysicalEducationProfessionalController {
     public ResponseEntity<PhysicalEducationProfessional> save(
             @RequestBody PhysicalEducationProfessionalRequest req,
             Authentication authentication) {
-
+        System.out.println("AUTH NAME = " + authentication.getName());
         String cref = authentication.getName();
         System.out.println("AUTH NAME = " + authentication.getName());
 
@@ -66,7 +66,9 @@ public class PhysicalEducationProfessionalController {
     public PhysicalEducationProfessional updateByCREF(
             @PathVariable String cref,
             @RequestBody PhysicalEducationProfessionalRequest req) {
-
+        System.out.println("ENTROU NO PUT");
+        System.out.println("CREF = " + cref);
+        System.out.println("REQ = " + req);
         return service.UpdatePEP(cref, req);
     }
 

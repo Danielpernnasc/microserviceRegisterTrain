@@ -37,6 +37,11 @@ public class LoginPhyEduProfService {
     }
 
     public LoginResponse createLogin(RegisterProfRequest request) {
+
+        if (loginRepository.existsByCref(request.cref()) || loginRepository.existsByEmail(request.email())) {
+            throw new RuntimeException("Cref or Email already registred");
+        }
+
         LoginPhyEdProf loginPhyEdProf = new LoginPhyEdProf();
         loginPhyEdProf.setEmail(request.email());
         loginPhyEdProf.setCref(request.cref());
@@ -48,8 +53,7 @@ public class LoginPhyEduProfService {
         return new LoginResponse(
                 saved.getId(),
                 saved.getEmail(),
-                saved.getCref(),
-                saved.getName());
+                saved.getCref());
     }
 
     public String authenticate(LoginRequest request) {
@@ -66,7 +70,7 @@ public class LoginPhyEduProfService {
 
         System.out.println("PASSO 3 - CREF");
 
-        LoginPhyEdProf login = user.orElseThrow(() -> new RuntimeException("User not found"));
+        LoginPhyEdProf login = user.orElseThrow(() -> new RuntimeException("User not_found"));
 
         System.out.println("PASSO 4 - USUARIO ENCONTRADO");
 
@@ -81,8 +85,10 @@ public class LoginPhyEduProfService {
                     new UsernamePasswordAuthenticationToken(
                             request.login(),
                             request.password()));
-        } catch (BadCredentialsException e) {
-            throw new RuntimeException("Invalid credentials");
+        } catch (Exception e) {
+            System.out.println("ERRO AUTH = " + e.getClass().getName());
+            System.out.println("MENSAGEM = " + e.getMessage());
+            throw e;
         }
 
         System.out.println("PASSO 6 - AUTH OK");
@@ -105,7 +111,6 @@ public class LoginPhyEduProfService {
                 login.getEmail(),
                 login.getCref(),
                 login.getId(),
-                professionalId,
                 role);
     }
 

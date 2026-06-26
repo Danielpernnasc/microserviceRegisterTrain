@@ -11,4 +11,8 @@ public interface LoginRepository extends MongoRepository<LoginPhyEdProf, String>
 
     Optional<LoginPhyEdProf> findByEmail(String email);
 
+    boolean existsByEmail(String email);
+
+    boolean existsByCref(String cref);
+
 }

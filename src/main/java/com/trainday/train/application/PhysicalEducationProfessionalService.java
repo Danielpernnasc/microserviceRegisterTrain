@@ -28,12 +28,12 @@ public class PhysicalEducationProfessionalService {
         return !repositorPhyEdProf.findByCref(cref).isEmpty();
     }
 
-    public PhysicalEducationProfessional create(String cref, PhysicalEducationProfessionalRequest req) {
+    public PhysicalEducationProfessional create(String email, PhysicalEducationProfessionalRequest req) {
 
-        LoginPhyEdProf user = loginRepository.findByCref(cref)
+        LoginPhyEdProf user = loginRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (repositorPhyEdProf.findByCref(cref).isPresent()) {
+        if (repositorPhyEdProf.findByCref(email).isPresent()) {
             throw new RuntimeException("CREF already registered");
         }
 
@@ -72,6 +72,13 @@ public class PhysicalEducationProfessionalService {
     }
 
     public PhysicalEducationProfessional UpdatePEP(String cref, PhysicalEducationProfessionalRequest req) {
+        System.out.println("CREF RECEBIDO = " + cref);
+
+        System.out.println("TODOS OS CREFS:");
+
+        repositorPhyEdProf.findAll()
+                .forEach(p -> System.out.println("-> " + p.getCref()));
+
         PhysicalEducationProfessional pep = repositorPhyEdProf.findByCref(cref)
                 .orElseThrow(() -> new RuntimeException("Physical Education Professional not found"));
 
@@ -124,7 +131,7 @@ public class PhysicalEducationProfessionalService {
         PhysicalEducationProfessional pep = repositorPhyEdProf.findByCref(cref)
                 .orElseThrow(() -> new RuntimeException("Physical Education Professional not found"));
 
-        String userId = pep.getUserId();
+        String userId = pep.getId();
         repositorPhyEdProf.deleteById(cref);
         loginRepository.deleteById(userId);
     }
