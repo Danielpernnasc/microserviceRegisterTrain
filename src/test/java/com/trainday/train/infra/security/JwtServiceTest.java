@@ -9,56 +9,52 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import com.trainday.train.domain.models.enums.Role;
+import com.trainday.train.infra.service.JwtService;
+
 public class JwtServiceTest {
 
     @InjectMocks
     private JwtService jwtService;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         jwtService = new JwtService();
 
         ReflectionTestUtils.setField(jwtService, "secret", "fake-secret-key-for-testing-trainday-2026!!");
-        ReflectionTestUtils.setField(jwtService, "experation", 3600000L);
+        ReflectionTestUtils.setField(jwtService, "expiration", 3600000L);
     }
 
     @Test
-    void shouldReturnedKey(){
+    void shouldReturnedKey() {
         Key key = jwtService.testgetKey();
         assertNotNull(key);
     }
 
-
     @Test
-    void shouldGenerateToken(){
-        String token = jwtService.generateToken("usuary-123");
+    void shouldGenerateToken() {
+        String token = jwtService.generateToken(
+                "athlete@host.com.br", "John Doe", "athlete", Role.ATHLETE);
 
         assertNotNull(token);
         assertFalse(token.isBlank());
     }
 
     @Test
-    void shouldExtractEmail(){
-        String token = jwtService.generateToken("athlete@host.com.br");
-        String email = jwtService.extractEmail(token);
-        assertEquals("athlete@host.com.br", email);
-    }
-
-    @Test
-    void shouldReturnTrueWhenTokenIsValid(){
-        String token = jwtService.generateToken("athlete@host.com.br");
+    void shouldReturnTrueWhenTokenIsValid() {
+        String token = jwtService.generateToken("athlete@host.com.br", "John Doe", "athlete", Role.ATHLETE);
         assertTrue(jwtService.isTokenValid(token));
     }
 
     @Test
-    void shouldReturnFalseWhenTokenIsValid(){
+    void shouldReturnFalseWhenTokenIsInvalid() {
         assertFalse(jwtService.isTokenValid("token-invalido"));
     }
 
     @Test
-    void shouldExtractUsername(){
-        String token = jwtService.generateToken("athlete@host.com.br");
-        String username = jwtService.extractUsername(token);
+    void shouldExtractUsername() {
+        String token = jwtService.generateToken("athlete@host.com.br", "John Doe", "athlete", Role.ATHLETE);
+        String username = jwtService.extractUserName(token);
         assertEquals("athlete@host.com.br", username);
     }
 }

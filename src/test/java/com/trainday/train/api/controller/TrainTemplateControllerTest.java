@@ -21,7 +21,7 @@ import com.trainday.train.domain.models.Exercise;
 import com.trainday.train.domain.models.Train;
 import com.trainday.train.domain.models.TrainSchedule;
 import com.trainday.train.domain.models.TrainTemplate;
-import com.trainday.train.infra.security.JwtService;
+import com.trainday.train.infra.service.JwtService;
 
 @ExtendWith(MockitoExtension.class)
 public class TrainTemplateControllerTest {
@@ -32,18 +32,17 @@ public class TrainTemplateControllerTest {
     @Mock
     JwtService jwtService;
 
- 
     @InjectMocks
     TrainTemplateController trainTemplateController;
 
     @Test
-    void shouldapplyTemplateTrain(){
+    void shouldapplyTemplateTrain() {
 
         Exercise exercise = new Exercise();
         exercise.setNameExercise("Supino reto barra");
         exercise.setSeries(4);
         exercise.setBreakTime("90s");
-        exercise.setObservation( "1a leve, ultimas 2 ate falha");
+        exercise.setObservation("1a leve, ultimas 2 ate falha");
 
         TrainSchedule trainSchedule = new TrainSchedule();
         trainSchedule.setWeekday("Segunda-Feira");
@@ -51,7 +50,6 @@ public class TrainTemplateControllerTest {
         trainSchedule.setEmphasis("Volume e densidade peitoral");
         trainSchedule.setExercises(List.of(exercise));
 
-   
         TrainTemplate trainTemplate = new TrainTemplate();
         trainTemplate.setId("1");
         trainTemplate.setNameTrain("Classic Elite Pro");
@@ -72,21 +70,21 @@ public class TrainTemplateControllerTest {
         train.setSchedules(new ArrayList<>(List.of(trainSchedule)));
 
         when(trainTemplateService.applyTemplateTrain("1", "123")).thenReturn(train);
-        when(jwtService.extractEmail(any())).thenReturn("123");
-        
+        when(jwtService.extractSubject(any())).thenReturn("123");
+
         ResponseEntity<Train> result = trainTemplateController.applyTemplateTrain("1", "Bearer fake-token");
 
         assertNotNull(result);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals("Classic Elite Pro", result.getBody().getNameTrain());
-        
+
     }
 
     @Test
-    void shouldgetTrainTemplate(){
-        
+    void shouldgetTrainTemplate() {
+
         LocalDateTime now = LocalDateTime.now();
-        
+
         Exercise exercise = new Exercise();
         exercise.setNameExercise("Supino reto barra");
         exercise.setSeries(4);
@@ -100,18 +98,15 @@ public class TrainTemplateControllerTest {
         trainSchedule.setEmphasis("Volume e densidade peitoral");
         trainSchedule.setExercises(List.of(exercise));
 
-        TrainTemplate train = new TrainTemplate(
-            "ahlete@host.com.br",
-            "Classic Elite Pro",
-            "Classic Physique",
-            "Divisao semanal avan‡ada estilo Classic Physique", 
-            now,
-            List.of(trainSchedule)
-   
-        );
+        TrainTemplate train = new TrainTemplate();
+        train.setId("1");
+        train.setNameTrain("Classic Elite Pro");
+        train.setCategory("Classic Physique");
+        train.setDescription("Divisao semanal avan‡ada estilo Classic Physique");
+        train.setCreatedAt(now);
+        train.setSchedules(List.of(trainSchedule));
         List<TrainTemplate> trains = List.of(train);
 
-       
         when(trainTemplateService.getTrainTemplate()).thenReturn(trains);
 
         ResponseEntity<List<TrainTemplate>> result = trainTemplateController.getTrainTemplate();
@@ -130,13 +125,9 @@ public class TrainTemplateControllerTest {
         assertEquals(4, train.getSchedules().get(0).getExercises().get(0).getSeries());
         assertEquals("8-10", train.getSchedules().get(0).getExercises().get(0).getRepetitions());
         assertEquals("90s", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
-        assertEquals("1a leve, ultimas 2 ate falha", train.getSchedules().get(0).getExercises().get(0).getObservation());
+        assertEquals("1a leve, ultimas 2 ate falha",
+                train.getSchedules().get(0).getExercises().get(0).getObservation());
 
     }
-
-
-
-
-
 
 }

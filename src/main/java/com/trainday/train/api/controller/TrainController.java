@@ -69,7 +69,7 @@ public class TrainController {
             @PathVariable String cpf,
             @PathVariable int index,
             @RequestBody TrainScheduleRequest req) {
-        Train train = trainScheduleExerciseService.patchTrainScheduleById(cpf, index, req);
+        Train train = trainScheduleExerciseService.patchTrainScheduleByCpf(cpf, index, req);
 
         return ResponseEntity.ok(train);
     }

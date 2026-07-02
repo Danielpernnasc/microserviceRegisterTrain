@@ -27,7 +27,7 @@ public class JwtService {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    private Key testgetKey() {
+    public Key testgetKey() {
         return getKey();
     }
 

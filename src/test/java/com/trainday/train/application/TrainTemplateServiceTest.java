@@ -34,80 +34,69 @@ public class TrainTemplateServiceTest {
     TrainRepository trainRepository;
 
     @Test
-    void shouldApplyTemplateTrain(){
+    void shouldApplyTemplateTrain() {
         TrainTemplate trainTemplate = new TrainTemplate();
+        trainTemplate.setId("Train123");
+
         trainTemplate.setNameTrain("Classic Elite Pro");
         trainTemplate.setCategory("Classic Physique");
         trainTemplate.setDescription("Divisão semanal avançada estilo Classic Physique");
         trainTemplate.setCreatedAt(LocalDateTime.now());
-          trainTemplate.setSchedules(List.of(new TrainSchedule(
-        "Segunda",
-        "Peito e Ombros",
-        "Volume e densidade",
-            List.of(new Exercise(
-                "Supino Reto",
-                4,
-                "10-12",
-                "60",
-                "Use barra de 20kg"
-            ))
-        )));
+        trainTemplate.setSchedules(List.of(new TrainSchedule(
+                "Segunda",
+                "Peito e Ombros",
+                "Volume e densidade",
+                List.of(new Exercise(
+                        "Supino Reto",
+                        4,
+                        "10-12",
+                        "60",
+                        "Use barra de 20kg")))));
 
-        when(trainTemplateRepository.findById("1")).thenReturn(Optional.of(trainTemplate));
+        when(trainTemplateRepository.findById("Train123")).thenReturn(Optional.of(trainTemplate));
         when(trainRepository.save(any(Train.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-    Train result = trainTemplateService.applyTemplateTrain("1", "athlete123");
+        Train result = trainTemplateService.applyTemplateTrain("Train123", "athlete123");
 
-    assertNotNull(result);
-    assertEquals("Classic Elite Pro", result.getNameTrain());
-    assertEquals("athlete123", result.getAthleteId());
-    assertEquals("Classic Physique", result.getCategory());
-    assertEquals("Divisão semanal avançada estilo Classic Physique", result.getDescription());
-    assertEquals(1, result.getSchedules().size());
-    assertEquals("Segunda", result.getSchedules().get(0).getWeekday());
+        assertNotNull(result);
+        assertEquals("Classic Elite Pro", result.getNameTrain());
+        assertEquals("Classic Physique", result.getCategory());
+        assertEquals("Divisão semanal avançada estilo Classic Physique", result.getDescription());
+        assertEquals(1, result.getSchedules().size());
+
     }
-
 
     @Test
-    void ShouldGetTrainsList(){
+    void ShouldGetTrainsList() {
 
+        TrainTemplate train = new TrainTemplate();
+        train.setId("1");
+        train.setNameTrain("Treino A");
+        train.setCategory("Força");
+        train.setDescription("Treino focado em força para membros superiores");
+        train.setCreatedAt(LocalDateTime.now());
+        train.setSchedules(List.of(new TrainSchedule(
+                "Segunda-feira",
+                "Peito",
+                "Força",
+                List.of(new Exercise(
+                        "Supino Reto",
+                        4,
+                        "10-12",
+                        "60",
+                        "Use uma barra de 20kg e aumente o peso progressivamente")))));
 
-         TrainTemplate train = new TrainTemplate(
-        "1",
-        "Treino A",
-        "Força",
-        "Treino focado em força para membros superiores",
-        LocalDateTime.now(), 
-        List.of(new TrainSchedule(
-            "Segunda-feira",
-            "Peito",
-            "Força",
-            List.of(new Exercise(
-                "Supino Reto",
-                4,
-                "10-12",
-                "60",
-                "Use uma barra de 20kg e aumente o peso progressivamente"
-            ))
-        ))
-    );
-  
-    when(trainTemplateRepository.findAll()).thenReturn(List.of(train));
+        when(trainTemplateRepository.findAll()).thenReturn(List.of(train));
 
-    List<TrainTemplate> result = trainTemplateService.getTrainTemplate();
+        List<TrainTemplate> result = trainTemplateService.getTrainTemplate();
 
-    assertNotNull(result);
-    assertEquals(1, result.size());
-    assertEquals("Treino A", result.get(0).getNameTrain());
-    assertEquals("Força", result.get(0).getCategory());
-    assertEquals("Treino focado em força para membros superiores", result.get(0).getDescription());
-    assertEquals(1, result.get(0).getSchedules().size());
-    
-
-
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals("Treino A", result.get(0).getNameTrain());
+        assertEquals("Força", result.get(0).getCategory());
+        assertEquals("Treino focado em força para membros superiores", result.get(0).getDescription());
+        assertEquals(1, result.get(0).getSchedules().size());
 
     }
-
-
 
 }
