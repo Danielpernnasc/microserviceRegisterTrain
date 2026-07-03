@@ -16,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.trainday.train.api.DTO.request.ExerciseRequest;
-import com.trainday.train.api.DTO.request.TrainRequest;
 import com.trainday.train.api.DTO.request.TrainScheduleRequest;
 import com.trainday.train.domain.models.Exercise;
 import com.trainday.train.domain.models.Train;
@@ -33,9 +32,9 @@ public class TrainScheduleExerciseServiceTest {
     TrainRepository trainRepository;
 
     @Test
-    void ShouldpatchTrainScheduleById(){
+    void ShouldpatchTrainScheduleById() {
         Train existingTrain = new Train();
-        existingTrain.setId("1");
+        existingTrain.setId("999.999.999-99");
         existingTrain.setAthleteId("athlete123");
         existingTrain.setNameTrain("Treino A");
         existingTrain.setCategory("Força");
@@ -51,55 +50,50 @@ public class TrainScheduleExerciseServiceTest {
 
         existingTrain.setSchedules(new ArrayList<>(List.of(existingSchedule)));
 
-   
-      
-    
-         TrainScheduleRequest patchTrainScheduleRequest = new TrainScheduleRequest(
-            "Quarta-Feira",
-            "Peito",
-            "Volume", 
-            List.of(new ExerciseRequest(
-               null,
-               null,
-                null,
-                null,
-                null
-            )) 
-    
-    );
-    
-    when(trainRepository.findById("1")).thenReturn(Optional.of(existingTrain));
-    when(trainRepository.save(any(Train.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        TrainScheduleRequest patchTrainScheduleRequest = new TrainScheduleRequest(
+                "Quarta-Feira",
+                "Peito",
+                "Volume",
+                List.of(new ExerciseRequest(
+                        null,
+                        null,
+                        null,
+                        null,
+                        null))
 
-    Train result = trainScheduleExerciseService.patchTrainScheduleById("1", 0, patchTrainScheduleRequest);
-
-    assertNotNull(result);
-     assertEquals("Quarta-Feira",  result.getSchedules().get(0).getWeekday());
-        assertEquals("Peito",  result.getSchedules().get(0).getMusclegroup());
-        assertEquals("Volume",  result.getSchedules().get(0).getEmphasis());
-      
-
-  }
-
-  @Test
-  void shouldThrowWhenScheduleIndexOutOfBounds() {
-        Train existingTrain = new Train();
-        existingTrain.setId("1");
-        existingTrain.setSchedules(new ArrayList<>(List.of()));
-
-        when(trainRepository.findById("1")).thenReturn(Optional.of(existingTrain));
-
-        TrainScheduleRequest req = new TrainScheduleRequest(
-            "Segunda-Feira", null, null, List.of()
         );
 
+        when(trainRepository.findFirstByAthleteCpf("999.999.999-99")).thenReturn(Optional.of(existingTrain));
+        when(trainRepository.save(any(Train.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        Train result = trainScheduleExerciseService.patchTrainScheduleByCpf("999.999.999-99", 0,
+                patchTrainScheduleRequest);
+
+        assertNotNull(result);
+        assertEquals("Quarta-Feira", result.getSchedules().get(0).getWeekday());
+        assertEquals("Peito", result.getSchedules().get(0).getMusclegroup());
+        assertEquals("Volume", result.getSchedules().get(0).getEmphasis());
+
+    }
+
+    @Test
+    void shouldThrowWhenScheduleIndexOutOfBounds() {
+        Train existingTrain = new Train();
+        existingTrain.setId("999.999.999-99");
+        existingTrain.setSchedules(new ArrayList<>(List.of()));
+
+        when(trainRepository.findFirstByAthleteCpf("999.999.999-99")).thenReturn(Optional.of(existingTrain));
+
+        TrainScheduleRequest req = new TrainScheduleRequest(
+                "Segunda-Feira", null, null, List.of());
+
         assertThrows(RuntimeException.class, () -> {
-            trainScheduleExerciseService.patchTrainScheduleById("1", 99, req);
+            trainScheduleExerciseService.patchTrainScheduleByCpf("999.999.999-99", 99, req);
         });
     }
 
     @Test
-    void shouldpatchTrainExercise(){
+    void shouldpatchTrainExercise() {
         Train existingTrain = new Train();
         existingTrain.setId("1");
         existingTrain.setAthleteId("athlete123");
@@ -125,12 +119,11 @@ public class TrainScheduleExerciseServiceTest {
         existingSchedule.setExercises(new ArrayList<>(List.of(exercise)));
 
         ExerciseRequest exerciseRequest = new ExerciseRequest(
-            "Supino Reto",
-             4,
-            "6-10",
-            "90s", 
-            "Descida de devagar e explosão na subida"
-        );
+                "Supino Reto",
+                4,
+                "6-10",
+                "90s",
+                "Descida de devagar e explosão na subida");
 
         when(trainRepository.findById("1")).thenReturn(Optional.of(existingTrain));
         when(trainRepository.save(any(Train.class))).thenAnswer(invocation -> invocation.getArgument(0));
@@ -140,52 +133,46 @@ public class TrainScheduleExerciseServiceTest {
         assertEquals(4, result.getSchedules().get(0).getExercises().get(0).getSeries());
         assertEquals("6-10", result.getSchedules().get(0).getExercises().get(0).getRepetitions());
         assertEquals("90s", result.getSchedules().get(0).getExercises().get(0).getBreakTime());
-        assertEquals("Descida de devagar e explosão na subida", result.getSchedules().get(0).getExercises().get(0).getObservation());
-        
+        assertEquals("Descida de devagar e explosão na subida",
+                result.getSchedules().get(0).getExercises().get(0).getObservation());
+
     }
 
-      @Test
-      void shouldThrowWhenExerciseIndexOutOfBounds() {
-            Train existingTrain = new Train();
-            existingTrain.setId("1");
-            existingTrain.setSchedules(new ArrayList<>(List.of()));
+    @Test
+    void shouldThrowWhenExerciseIndexOutOfBounds() {
+        Train existingTrain = new Train();
+        existingTrain.setId("1");
+        existingTrain.setSchedules(new ArrayList<>(List.of()));
 
-            when(trainRepository.findById("1")).thenReturn(Optional.of(existingTrain));
+        when(trainRepository.findById("1")).thenReturn(Optional.of(existingTrain));
 
-            ExerciseRequest req = new ExerciseRequest(
-                "Supino Reto", null, null, null, null
-            );
+        ExerciseRequest req = new ExerciseRequest(
+                "Supino Reto", null, null, null, null);
 
-            assertThrows(RuntimeException.class, () -> {
-                trainScheduleExerciseService.patchTrainExercise("1", 0, 0, req);
-            });
-        }
+        assertThrows(RuntimeException.class, () -> {
+            trainScheduleExerciseService.patchTrainExercise("1", 0, 0, req);
+        });
+    }
 
-        @Test
-        void shouldThrowWhenExercise_IndexOutOfBounds() {
-            TrainSchedule trainSchedule = new TrainSchedule();
-            trainSchedule.setWeekday("Segunda-Feira");
-            trainSchedule.setExercises(new ArrayList<>());
+    @Test
+    void shouldThrowWhenExercise_IndexOutOfBounds() {
+        TrainSchedule trainSchedule = new TrainSchedule();
+        trainSchedule.setWeekday("Segunda-Feira");
+        trainSchedule.setExercises(new ArrayList<>());
 
-            Train existingTrain = new Train();
-            existingTrain.setId("1");
-            existingTrain.setSchedules(new ArrayList<>(List.of(trainSchedule)));
+        Train existingTrain = new Train();
+        existingTrain.setId("1");
+        existingTrain.setSchedules(new ArrayList<>(List.of(trainSchedule)));
 
-            when(trainRepository.findById("1")).thenReturn(Optional.of(existingTrain));
+        when(trainRepository.findById("1")).thenReturn(Optional.of(existingTrain));
 
-            ExerciseRequest req = new ExerciseRequest(
-                "Supino Reto", null, null, null, null
-            );
+        ExerciseRequest req = new ExerciseRequest(
+                "Supino Reto", null, null, null, null);
 
-            assertThrows(RuntimeException.class, () -> {
-                trainScheduleExerciseService.patchTrainExercise("1", 0, 99, req);
-            });
+        assertThrows(RuntimeException.class, () -> {
+            trainScheduleExerciseService.patchTrainExercise("1", 0, 99, req);
+        });
 
-        }
-
-
-
-
-
+    }
 
 }

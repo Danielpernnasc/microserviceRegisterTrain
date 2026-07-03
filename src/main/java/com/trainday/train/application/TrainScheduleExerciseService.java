@@ -11,56 +11,53 @@ import com.trainday.train.domain.models.Train;
 import com.trainday.train.domain.models.TrainSchedule;
 import com.trainday.train.domain.repository.TrainRepository;
 
-
 @Service
 public class TrainScheduleExerciseService {
 
-     private final TrainRepository trainRepository;
+    private final TrainRepository trainRepository;
 
     public TrainScheduleExerciseService(TrainRepository trainRepository) {
         this.trainRepository = trainRepository;
     }
 
+    public Train patchTrainScheduleByCpf(String cpf, int index, TrainScheduleRequest req) {
+        Train train = trainRepository.findFirstByAthleteCpf(cpf)
+                .orElseThrow(() -> new RuntimeException("Train not found"));
 
-     public Train patchTrainScheduleById(String id, int index, TrainScheduleRequest req) {
-        Train train = trainRepository.findById(id).orElseThrow(() -> new RuntimeException("Train not found"));
-        
         List<TrainSchedule> schedules = train.getSchedules();
 
-        if(index < 0 || index >= schedules.size()) {
+        if (index < 0 || index >= schedules.size()) {
             throw new RuntimeException("Schedule index out of bounds");
         }
 
         TrainSchedule schedule = schedules.get(index);
 
-        if(req.weekday() != null) {
+        if (req.weekday() != null) {
             schedule.setWeekday(req.weekday());
         }
 
-        if(req.musclegroup() != null) {
+        if (req.musclegroup() != null) {
             schedule.setMusclegroup(req.musclegroup());
         }
 
-        if(req.emphasis() != null) {
+        if (req.emphasis() != null) {
             schedule.setEmphasis(req.emphasis());
         }
 
-
-
         schedules.set(index, schedule);
         train.setSchedules(schedules);
-        
+
         return trainRepository.save(train);
     }
-    
-   public Train patchTrainExercise(
-        String id,
-        int scheduleIndex,
-        int exerciseIndex,
-        ExerciseRequest req) {
+
+    public Train patchTrainExercise(
+            String id,
+            int scheduleIndex,
+            int exerciseIndex,
+            ExerciseRequest req) {
 
         Train train = trainRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Train not found"));
+                .orElseThrow(() -> new RuntimeException("Train not found"));
 
         List<TrainSchedule> schedules = train.getSchedules();
 
@@ -73,8 +70,6 @@ public class TrainScheduleExerciseService {
         if (exerciseIndex < 0 || exerciseIndex >= exercises.size()) {
             throw new RuntimeException("Exercise index out of bounds");
         }
-
-        
 
         Exercise exercise = exercises.get(exerciseIndex);
 
@@ -99,6 +94,5 @@ public class TrainScheduleExerciseService {
 
         return trainRepository.save(train);
     }
-
 
 }

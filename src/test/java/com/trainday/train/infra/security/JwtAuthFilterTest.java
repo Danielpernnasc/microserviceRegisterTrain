@@ -11,6 +11,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.trainday.train.infra.service.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +25,9 @@ public class JwtAuthFilterTest {
 
     @Mock
     JwtService jwtService;
+
+    @Mock
+    UserDetailsService userDetailsService;
 
     @InjectMocks
     JwtAuthFilter jwtAuthFilter;
@@ -34,7 +41,7 @@ public class JwtAuthFilterTest {
     @Mock
     private FilterChain filterChain;
 
-     @AfterEach
+    @AfterEach
     void clearContext() {
         SecurityContextHolder.clearContext();
     }
@@ -48,32 +55,37 @@ public class JwtAuthFilterTest {
         verifyNoInteractions(jwtService);
     }
 
-    @Test 
+    @Test
     void shouldAuthenticateWhenTokenIsValid() throws Exception {
         when(request.getHeader("Authorization")).thenReturn("Bearer valid-token");
         when(jwtService.isTokenValid("valid-token")).thenReturn(true);
-        when(jwtService.extractEmail("valid-token")).thenReturn("athlete@host.com");
+        when(jwtService.extractUserName("valid-token")).thenReturn("athlete@host.com");
+        when(userDetailsService.loadUserByUsername("athlete@host.com"))
+                .thenReturn(User.withUsername("athlete@host.com")
+                        .password("password")
+                        .authorities("ROLE_ATHLETE")
+                        .build());
 
         jwtAuthFilter.doFilterInternal(request, response, filterChain);
         verify(filterChain).doFilter(request, response);
 
-       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-       assertNotNull(auth);
-       assertEquals("athlete@host.com", auth.getPrincipal());
-       
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        assertNotNull(auth);
+        assertEquals("athlete@host.com", auth.getPrincipal());
+
     }
 
     @Test
     void shouldSkipAuthWhenTokenIsInvalid() throws Exception {
-             when(request.getHeader("Authorization")).thenReturn("Bearer invalid-token");
-             when(jwtService.isTokenValid("invalid-token")).thenThrow(new RuntimeException("Token inválido"));
+        when(request.getHeader("Authorization")).thenReturn("Bearer invalid-token");
+        when(jwtService.isTokenValid("invalid-token")).thenReturn(false);
 
-             jwtAuthFilter.doFilterInternal(request, response, filterChain);
+        jwtAuthFilter.doFilterInternal(request, response, filterChain);
 
-             verify(filterChain).doFilter(request, response);
+        verify(filterChain).doFilter(request, response);
 
-             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-             assertNull(auth);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        assertNull(auth);
 
     }
 
