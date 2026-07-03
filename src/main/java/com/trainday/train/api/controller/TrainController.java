@@ -53,18 +53,24 @@ public class TrainController {
                 .body(createdTrain);
     }
 
-    @GetMapping("/athlete/cpf/{cpf}")
+    @GetMapping("/athlete/train/{cpf}")
+    public ResponseEntity<List<Train>> getTrainByAthlete(
+            @PathVariable String cpf) {
+        return ResponseEntity.ok(trainService.getTrainByCpf(cpf));
+    }
+
+    @GetMapping("/athlete/MyTrain/{cpf}")
     public ResponseEntity<List<Train>> getTrainByCpf(
             @PathVariable String cpf) {
         return ResponseEntity.ok(trainService.getTrainByCpf(cpf));
     }
 
-    @PatchMapping("/my-trains/{cpf}")
+    @PatchMapping("/AthletesTrain/{cpf}")
     public ResponseEntity<Train> patchTrainByCpf(@PathVariable String cpf, @RequestBody TrainRequest req) {
         return ResponseEntity.ok(trainService.patchTrainByCpf(cpf, req));
     }
 
-    @PatchMapping("/my-trains/{cpf}/schedule/{index}")
+    @PatchMapping("/AthletesTrain/{cpf}/schedule/{index}")
     public ResponseEntity<Train> patchTrainScheduleByCpf(
             @PathVariable String cpf,
             @PathVariable int index,
@@ -74,7 +80,7 @@ public class TrainController {
         return ResponseEntity.ok(train);
     }
 
-    @PatchMapping("/my-trains/{cpf}/schedule/{scheduleIndex}/exercise/{exerciseIndex}")
+    @PatchMapping("/AthletesTrain/{cpf}/schedule/{scheduleIndex}/exercise/{exerciseIndex}")
     public ResponseEntity<Train> patchTrainExerciseByCpf(
             @PathVariable String cpf,
             @PathVariable int scheduleIndex,
@@ -85,12 +91,12 @@ public class TrainController {
         return ResponseEntity.ok(train);
     }
 
-    @PutMapping("/my-trains/{cpf}")
+    @PutMapping("/AthletesTrain/{cpf}")
     public ResponseEntity<Train> updateTrainById(@PathVariable String cpf, @RequestBody TrainRequest updateTrainReq) {
         return ResponseEntity.ok(trainService.updateTrainByCpf(cpf, updateTrainReq));
     }
 
-    @DeleteMapping("/my-trains/{cpf}")
+    @DeleteMapping("/AthletesTrain/{cpf}")
     public ResponseEntity<Void> deleteTrainById(@PathVariable String cpf) {
         trainService.deleteTrainByCpf(cpf);
         return ResponseEntity.noContent().build();

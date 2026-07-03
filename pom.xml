@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>21</java.version>
+        <maven.compiler.release>21</maven.compiler.release>
         <sonar.projectKey>Danielpernnasc_treino-service</sonar.projectKey>
         <sonar.organization>danielpernnasc</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -65,6 +66,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>3.0.0</version>
         </dependency>
 		
 		<!-- JJWT -->

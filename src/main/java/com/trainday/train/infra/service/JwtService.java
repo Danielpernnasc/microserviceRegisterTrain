@@ -1,5 +1,6 @@
 package com.trainday.train.infra.service;
 
+import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Service;
 
 import com.trainday.train.domain.models.enums.Role;
@@ -24,10 +25,12 @@ public class JwtService {
     private long expiration;
 
     private Key getKey() {
+
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    private Key testgetKey() {
+    public Key testgetKey() {
+
         return getKey();
     }
 
@@ -39,7 +42,7 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
         claims.put("cref", cref);
         claims.put("email", email);
-
+        claims.put("professionalId", professionalId);
         claims.put("role", role.name());
 
         return Jwts.builder()
@@ -51,13 +54,12 @@ public class JwtService {
                 .compact();
     }
 
+
+
+
+
     public String extractSubject(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(getKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
+        return extractAllClaims(token).getSubject();
     }
 
     public boolean isTokenValid(String token) {
@@ -72,12 +74,18 @@ public class JwtService {
         }
     }
 
-    public String extractUserName(String token) {
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("role", String.class);
+    }
+
+    private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getKey())
                 .build()
                 .parseClaimsJws(token)
-                .getBody()
-                .get("email", String.class);
+                .getBody();
     }
+
+
+
 }
