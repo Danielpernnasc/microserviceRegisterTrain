@@ -54,7 +54,7 @@ public class JwtServiceTest {
     @Test
     void shouldExtractUsername() {
         String token = jwtService.generateToken("athlete@host.com.br", "John Doe", "athlete", Role.ATHLETE);
-        String username = jwtService.extractUserName(token);
+        String username = jwtService.extractSubject(token);
         assertEquals("athlete@host.com.br", username);
     }
 }
