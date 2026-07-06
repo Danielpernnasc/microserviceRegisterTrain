@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.trainday.train.api.DTO.request.PhysicalEducationProfessionalRequest;
 import com.trainday.train.api.DTO.response.PhysicalEducationProfessionalResponse;
-import com.trainday.train.application.PhysicalEducationProfessionalService;
+import com.trainday.train.application.service.PhysicalEducationProfessionalService;
 import com.trainday.train.domain.models.PhysicalEducationProfessional;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
