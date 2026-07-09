@@ -16,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.trainday.train.application.TrainTemplateService;
+import com.trainday.train.application.service.TrainTemplateService;
 import com.trainday.train.domain.models.Exercise;
 import com.trainday.train.domain.models.Train;
 import com.trainday.train.domain.models.TrainSchedule;

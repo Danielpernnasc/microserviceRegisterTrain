@@ -1,4 +1,4 @@
-package com.trainday.train.application;
+package com.trainday.train.application.service;
 
 import java.util.List;
 

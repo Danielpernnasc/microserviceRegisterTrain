@@ -6,6 +6,7 @@ import java.util.List;
 import com.trainday.train.domain.models.enums.Role;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -38,7 +39,7 @@ public class Train {
 
     private List<TrainSchedule> schedules;
 
-    @org.springframework.data.annotation.Transient
+    @Transient
     public void prePersist() {
         if (this.createdAt == null) {
             this.createdAt = java.time.LocalDateTime.now();

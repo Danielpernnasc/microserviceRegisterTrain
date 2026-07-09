@@ -1,9 +1,11 @@
 package com.trainday.train.domain.models;
 
+import com.trainday.train.domain.models.enums.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +24,7 @@ public class LoginPhyEdProf {
     private String email;
     private String password;
     private String name;
+    @NotNull(message = "Role cannot be null")
+    private Role role;
 
 }

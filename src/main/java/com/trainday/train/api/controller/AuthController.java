@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trainday.train.api.DTO.request.LoginRequest;
 import com.trainday.train.api.DTO.request.RegisterProfRequest;
 import com.trainday.train.api.DTO.response.LoginResponse;
-import com.trainday.train.application.LoginPhyEduProfService;
+import com.trainday.train.application.service.LoginPhyEduProfService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public LoginResponse postMethodNafme(@RequestBody RegisterProfRequest request) {
+    public LoginResponse register(@RequestBody RegisterProfRequest request) {
 
         return loginService.createLogin(request);
 

@@ -21,28 +21,9 @@ public class LoginUserDetailsService implements UserDetailsService {
         this.loginRepository = loginRepository;
     }
 
-    // @Override
-    // public UserDetails loadUserByUsername(String login) throws
-    // UsernameNotFoundException {
-
-    // Optional<LoginPhyEdProf> user = loginRepository.findByCref(login);
-
-    // if (user.isEmpty()) {
-    // user = loginRepository.findByCref(login);
-    // }
-
-    // LoginPhyEdProf pep = user.orElseThrow(
-    // () -> new UsernameNotFoundException(Professional_not_found));
-
-    // return User.builder()
-    // .username(pep.getCref() != null ? pep.getCref() : pep.getEmail())
-    // .password(pep.getPassword())
-    // .authorities("USER")
-    // .build();
-    // }
 
     @Override
-    public UserDetails loadUserByUsername(String login) {
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
         System.out.println("LOAD USER = " + login);
 
@@ -61,11 +42,14 @@ public class LoginUserDetailsService implements UserDetailsService {
 
         System.out.println("USUARIO RETORNADO = " + loginPhyEdProf.getEmail());
 
+        if (loginPhyEdProf.getRole() == null) {
+            throw new UsernameNotFoundException("Professional has no role assigned");
+        }
+
         return User.builder()
-                .username(loginPhyEdProf.getCref())
                 .username(loginPhyEdProf.getEmail())
                 .password(loginPhyEdProf.getPassword())
-                .roles("USER")
+                .authorities("ROLE_" + loginPhyEdProf.getRole().name())
                 .build();
     }
 }

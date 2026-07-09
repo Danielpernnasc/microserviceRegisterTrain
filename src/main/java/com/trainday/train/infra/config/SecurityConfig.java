@@ -20,9 +20,12 @@ import com.trainday.train.infra.security.JwtAuthFilter;
 public class SecurityConfig {
 
     private static final String TRAINS = "/train/**";
-    private static final String TRAIN_MY_TRAINS_BY_ID = "/train/my-trains/**";
-    private static final String TRAIN_SCHEDULE = "/train/my-trains/*/schedule/*";
-    private static final String TRAIN_SCHEDULE_EXERCISE = "/train/my-trains/*/schedule/*/exercise/*";
+    private static final String TRAIN_MY_TRAINS_BY_ID = "/train/AthletesTrain/**";
+    private static final String TRAIN_SCHEDULE = "/train/AthletesTrain/*/schedule/*";
+    private static final String TRAIN_SCHEDULE_EXERCISE = "/train/AthletesTrain/*/schedule/*/exercise/*";
+    private static final String TRAIN_SEARCH_ATHLETE = "/train/athlete/train/{cpf}";
+    private static final String TRAIN_ATHLETE = "/train/athlete/MyTrain/*";
+
     private static final String TRAIN_TEMPLATES = "/trainTemplate/templates";
     private static final String APPLY_TRAIN_TEMPLATE = "/trainTemplate/templates/*/apply";
     private static final String AUTH = "/auth/*";
@@ -64,23 +67,26 @@ public class SecurityConfig {
                         .permitAll()
 
                         // Train endpoints públicos
-                        .requestMatchers(HttpMethod.POST, TRAINS).authenticated()
-                        .requestMatchers(HttpMethod.GET, TRAIN_MY_TRAINS_BY_ID).authenticated()
-                        .requestMatchers(HttpMethod.PUT, TRAIN_MY_TRAINS_BY_ID).authenticated()
-                        .requestMatchers(HttpMethod.DELETE, TRAIN_MY_TRAINS_BY_ID).authenticated()
-                        .requestMatchers(HttpMethod.PATCH, TRAIN_SCHEDULE).authenticated()
-                        .requestMatchers(HttpMethod.PATCH, TRAIN_SCHEDULE_EXERCISE).authenticated()
+                        .requestMatchers(HttpMethod.POST, TRAINS).hasRole("PERSONAL_TRAINER")
+                        .requestMatchers(HttpMethod.GET, TRAIN_SEARCH_ATHLETE).hasRole("PERSONAL_TRAINER")
+                        .requestMatchers(HttpMethod.PUT, TRAIN_MY_TRAINS_BY_ID).hasRole("PERSONAL_TRAINER")
+                        .requestMatchers(HttpMethod.DELETE, TRAIN_MY_TRAINS_BY_ID).hasRole("PERSONAL_TRAINER")
+                        .requestMatchers(HttpMethod.PATCH, TRAIN_SCHEDULE).hasRole("PERSONAL_TRAINER")
+                        .requestMatchers(HttpMethod.PATCH, TRAIN_SCHEDULE_EXERCISE).hasRole("PERSONAL_TRAINER")
 
                         .requestMatchers(HttpMethod.GET, TRAIN_TEMPLATES).permitAll()
-                        .requestMatchers(HttpMethod.POST, APPLY_TRAIN_TEMPLATE).authenticated()
+                        .requestMatchers(HttpMethod.POST, APPLY_TRAIN_TEMPLATE).hasRole("PERSONAL_TRAINER")
 
                         .requestMatchers(HttpMethod.POST, AUTH).permitAll()
 
-                        .requestMatchers(HttpMethod.POST, PEP).authenticated()
-                        .requestMatchers(HttpMethod.GET, PEP_CREF).authenticated()
-                        .requestMatchers(HttpMethod.PUT, PEP_CREF).authenticated()
-                        .requestMatchers(HttpMethod.PATCH, PEP_CREF).authenticated()
-                        .requestMatchers(HttpMethod.DELETE, PEP_CREF).authenticated()
+                        .requestMatchers(HttpMethod.POST, PEP).hasRole("PERSONAL_TRAINER")
+                        .requestMatchers(HttpMethod.GET, PEP_CREF).hasRole("PERSONAL_TRAINER")
+                        .requestMatchers(HttpMethod.PUT, PEP_CREF).hasRole("PERSONAL_TRAINER")
+                        .requestMatchers(HttpMethod.PATCH, PEP_CREF).hasRole("PERSONAL_TRAINER")
+
+                        .requestMatchers(HttpMethod.DELETE, PEP_CREF).hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, TRAIN_ATHLETE ).hasRole("ATHLETE")
 
                         .anyRequest().authenticated()
 

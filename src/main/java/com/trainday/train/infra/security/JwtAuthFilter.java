@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,17 +28,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private static final Logger log = LoggerFactory.getLogger(JwtAuthFilter.class);
 
     private final JwtService jwtService;
-    private final UserDetailsService userDetailService;
+
 
     public JwtAuthFilter(
-            JwtService jwtService,
-            UserDetailsService userDetailService) {
+            JwtService jwtService) {
         this.jwtService = jwtService;
-        this.userDetailService = userDetailService;
     }
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request)  {
         System.out.println("SHOULD NOT FILTER URI = " + request.getServletPath());
         String path = request.getServletPath();
 
@@ -73,29 +72,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         boolean validToken = jwtService.isTokenValid(token);
 
         if (validToken) {
-            String login = jwtService.extractUserName(token);
-            UserDetails userDetails = userDetailService.loadUserByUsername(login);
+            String login = jwtService.extractSubject(token);
+
+            String role = jwtService.extractRole(token);
+
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                    userDetails, null, userDetails.getAuthorities());
+                  login, null, List.of(new SimpleGrantedAuthority("ROLE_" + role)));
             SecurityContextHolder.getContext().setAuthentication(auth);
 
         }
-
-        try {
-
-            if (jwtService.isTokenValid(token)) {
-                String email = jwtService.extractUserName(token);
-
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null,
-                        List.of());
-
-                SecurityContextHolder.getContext().setAuthentication((Authentication) auth);
-            }
-
-        } catch (Exception e) {
-            log.warn("Invalid JWT token: {}", e.getMessage());
-        }
-
         filterChain.doFilter(request, response);
 
     }

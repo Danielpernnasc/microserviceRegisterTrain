@@ -1,4 +1,4 @@
-package com.trainday.train.application;
+package com.trainday.train.application.service;
 
 import java.time.LocalDateTime;
 import java.util.List;

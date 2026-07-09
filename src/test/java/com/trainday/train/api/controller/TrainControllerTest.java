@@ -20,8 +20,8 @@ import org.springframework.security.core.Authentication;
 import com.trainday.train.api.DTO.request.ExerciseRequest;
 import com.trainday.train.api.DTO.request.TrainRequest;
 import com.trainday.train.api.DTO.request.TrainScheduleRequest;
-import com.trainday.train.application.TrainScheduleExerciseService;
-import com.trainday.train.application.TrainService;
+import com.trainday.train.application.service.TrainScheduleExerciseService;
+import com.trainday.train.application.service.TrainService;
 import com.trainday.train.domain.models.Exercise;
 import com.trainday.train.domain.models.Train;
 import com.trainday.train.domain.models.TrainSchedule;
@@ -199,6 +199,75 @@ public class TrainControllerTest {
                 assertEquals("90s", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
                 assertEquals("1a leve, ultimas 2 ate falha",
                                 train.getSchedules().get(0).getExercises().get(0).getObservation());
+
+        }
+
+        @Test
+        void shouldgetTrainByIdInternal() {
+
+                LocalDateTime now = LocalDateTime.now();
+
+                Exercise exercise = new Exercise();
+                exercise.setNameExercise("Supino reto barra");
+                exercise.setSeries(4);
+                exercise.setRepetitions("8-10");
+                exercise.setBreakTime("90s");
+                exercise.setObservation("1a leve, ultimas 2 ate falha");
+
+                TrainSchedule trainSchedule = new TrainSchedule();
+                trainSchedule.setWeekday("Segunda-Feira");
+                trainSchedule.setMusclegroup("Peito e Ombros");
+                trainSchedule.setEmphasis("Volume e densidade peitoral");
+                trainSchedule.setExercises(List.of(exercise));
+
+                Train train = new Train();
+                train.setId("6a1b8bc47747b33af4eef96b");
+                train.setAthleteId("999.999.999-99");
+                train.setAthleteCpf("999.999.999-99");
+                train.setAthleteName("Daniel Péricles do Nascimento");
+                train.setAthleteemail("athlete@host.com");
+                train.setRoleAthlete(Role.ATHLETE);
+                train.setNameTrain("Classic Elite Pro");
+                train.setCategory("Classic Physique");
+                train.setRoleprofessional(Role.PERSONAL_TRAINER);
+                train.setProfessionalId("CREF123456-G-SP");
+                train.setNameProfessional("Alessandra Liz Sabrina Assunção");
+                train.setCref("CREF123456-G-SP");
+                train.setDescription("Divisao semanal avan‡ada estilo Classic Physique");
+                train.setCreatedAt(now);
+                train.setSchedules(List.of(trainSchedule));
+
+                when(trainService.getTrainByCpf("999.999.999-99")).thenReturn(List.of(train));
+
+                ResponseEntity<List<Train>> result = trainController.getTrainByAthlete("999.999.999-99");
+
+                assertNotNull(result.getBody());
+
+                List<Train> trains = result.getBody();
+
+                assertEquals(1, trains.size());
+
+                Train trainResult = trains.get(0);
+
+                assertEquals("6a1b8bc47747b33af4eef96b", trainResult.getId());
+                assertEquals("999.999.999-99", train.getAthleteId());
+                assertEquals("999.999.999-99", train.getAthleteCpf());
+                assertEquals("athlete@host.com", trainResult.getAthleteemail());
+                assertEquals("Classic Elite Pro", trainResult.getNameTrain());
+                assertEquals("Classic Physique", trainResult.getCategory());
+                assertEquals("Divisao semanal avan‡ada estilo Classic Physique", trainResult.getDescription());
+                assertEquals(now, trainResult.getCreatedAt());
+
+                assertEquals("Segunda-Feira", train.getSchedules().get(0).getWeekday());
+                assertEquals("Peito e Ombros", train.getSchedules().get(0).getMusclegroup());
+                assertEquals("Volume e densidade peitoral", train.getSchedules().get(0).getEmphasis());
+                assertEquals(1, train.getSchedules().get(0).getExercises().size());
+                assertEquals("Supino reto barra", train.getSchedules().get(0).getExercises().get(0).getNameExercise());
+                assertEquals(4, train.getSchedules().get(0).getExercises().get(0).getSeries());
+                assertEquals("8-10", train.getSchedules().get(0).getExercises().get(0).getRepetitions());
+                assertEquals("90s", train.getSchedules().get(0).getExercises().get(0).getBreakTime());
+                assertEquals("1a leve, ultimas 2 ate falha",
+                        train.getSchedules().get(0).getExercises().get(0).getObservation());
 
         }
 

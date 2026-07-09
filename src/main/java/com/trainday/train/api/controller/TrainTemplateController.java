@@ -3,8 +3,8 @@ package com.trainday.train.api.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.trainday.train.application.TrainService;
-import com.trainday.train.application.TrainTemplateService;
+import com.trainday.train.application.service.TrainService;
+import com.trainday.train.application.service.TrainTemplateService;
 import com.trainday.train.domain.models.Train;
 import com.trainday.train.domain.models.TrainTemplate;
 import com.trainday.train.infra.service.JwtService;
