@@ -17,7 +17,7 @@ public class TrainApplication {
 
 	@PostConstruct
 	public void test() {
-		System.out.println("MONGO URI = " + mongoUri);
+		System.out.println("MongoDB URI: " + mongoUri);
 	}
 
 	public static void main(String[] args) {

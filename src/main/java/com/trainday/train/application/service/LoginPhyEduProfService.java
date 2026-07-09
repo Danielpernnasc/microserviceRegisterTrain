@@ -56,27 +56,17 @@ public class LoginPhyEduProfService {
 
     public String authenticate(LoginRequest request) {
 
-        System.out.println("PASSO 1 - INICIO");
-
         Optional<LoginPhyEdProf> user = loginRepository.findByEmail(request.login());
-
-        System.out.println("PASSO 2 - EMAIL");
 
         if (user.isEmpty()) {
             user = loginRepository.findByCref(request.login());
         }
 
-        System.out.println("PASSO 3 - CREF");
-
         LoginPhyEdProf login = user.orElseThrow(() -> new RuntimeException("User not_found"));
-
-        System.out.println("PASSO 4 - USUARIO ENCONTRADO");
 
         if (!passwordEncoder.matches(request.password(), login.getPassword())) {
             throw new RuntimeException("Invalid credentials");
         }
-
-        System.out.println("PASSO 5 - SENHA OK");
 
         try {
             autenticationManager.authenticate(
@@ -87,11 +77,7 @@ public class LoginPhyEduProfService {
             throw new RuntimeException("Authentication failed", e);
         }
 
-        System.out.println("PASSO 6 - AUTH OK");
-
         Optional<PhysicalEducationProfessional> phyEdProf = repositorPhyEdProf.findByCref(login.getCref());
-
-        System.out.println("PASSO 7 - PEP OK");
 
         String professionalId = phyEdProf
                 .map(PhysicalEducationProfessional::getId)
@@ -100,9 +86,6 @@ public class LoginPhyEduProfService {
         Role role = phyEdProf
                 .map(PhysicalEducationProfessional::getRole)
                 .orElse(Role.PERSONAL_TRAINER);
-
-        System.out.println("PASSO 8 - GERANDO TOKEN");
-
         return jwtService.generateToken(
                 login.getEmail(),
                 login.getCref(),

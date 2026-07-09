@@ -72,12 +72,13 @@ public class PhysicalEducationProfessionalService {
     }
 
     public PhysicalEducationProfessional UpdatePEP(String cref, PhysicalEducationProfessionalRequest req) {
-        System.out.println("CREF RECEBIDO = " + cref);
-
-        System.out.println("TODOS OS CREFS:");
 
         repositorPhyEdProf.findAll()
-                .forEach(p -> System.out.println("-> " + p.getCref()));
+                .forEach(p -> {;
+                    if (!p.getCref().equals(cref) && p.getEmail().equals(req.name())) {
+                        throw new RuntimeException("Email already registered");
+                    }
+                });
 
         PhysicalEducationProfessional pep = repositorPhyEdProf.findByCref(cref)
                 .orElseThrow(() -> new RuntimeException("Physical Education Professional not found"));

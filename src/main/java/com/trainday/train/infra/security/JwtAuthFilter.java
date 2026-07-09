@@ -37,9 +37,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request)  {
-        System.out.println("SHOULD NOT FILTER URI = " + request.getServletPath());
         String path = request.getServletPath();
-
         return path.equals("/auth/login") ||
                 path.equals("/auth/register") ||
                 path.equals("/trainTemplate/templates")
@@ -56,11 +54,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        System.out.println("DO FILTER URI = " + request.getRequestURI());
-
         String authHeader = request.getHeader("Authorization");
-
-        System.out.println("AUTH HEADER = " + authHeader);
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);

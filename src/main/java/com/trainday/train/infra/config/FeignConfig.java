@@ -23,7 +23,6 @@ public class FeignConfig {
                 HttpServletRequest request = attributes.getRequest();
 
                 String authorization = request.getHeader("Authorization");
-                System.out.println("FEIGN AUTH = " + authorization);
 
                 if (authorization != null) {
                     template.header("Authorization", authorization);

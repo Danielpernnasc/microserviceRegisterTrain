@@ -31,8 +31,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest request) {
-        System.out.println("ENTROU NO LOGIN");
-
         String token = loginService.authenticate(request);
         return ResponseEntity.ok(token);
     }
