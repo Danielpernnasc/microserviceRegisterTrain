@@ -23,7 +23,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public LoginResponse postMethodNafme(@RequestBody RegisterProfRequest request) {
+    public LoginResponse register(@RequestBody RegisterProfRequest request) {
 
         return loginService.createLogin(request);
 
