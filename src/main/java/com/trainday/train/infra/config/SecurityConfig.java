@@ -30,7 +30,7 @@ public class SecurityConfig {
     private static final String APPLY_TRAIN_TEMPLATE = "/trainTemplate/templates/*/apply";
     private static final String AUTH = "/auth/*";
     private static final String PEP = "/PEP";
-    private static final String PEP_CREF = "/PEP/*";
+    private static final String PEP_CREF = "/PEP/**";
 
     private final JwtAuthFilter jwtAuthFilter;
 

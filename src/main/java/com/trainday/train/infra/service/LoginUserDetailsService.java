@@ -25,22 +25,15 @@ public class LoginUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
-        System.out.println("LOAD USER = " + login);
-
         Optional<LoginPhyEdProf> user = loginRepository.findByEmail(login);
-
-        System.out.println("ACHOU EMAIL = " + user.isPresent());
 
         if (user.isEmpty()) {
             user = loginRepository.findByCref(login);
-
-            System.out.println("ACHOU CREF = " + user.isPresent());
         }
 
         LoginPhyEdProf loginPhyEdProf = user.orElseThrow(
                 () -> new UsernameNotFoundException("Professional not found"));
 
-        System.out.println("USUARIO RETORNADO = " + loginPhyEdProf.getEmail());
 
         if (loginPhyEdProf.getRole() == null) {
             throw new UsernameNotFoundException("Professional has no role assigned");
