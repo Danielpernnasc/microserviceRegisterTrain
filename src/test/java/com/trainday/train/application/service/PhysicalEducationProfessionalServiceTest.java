@@ -61,6 +61,7 @@ class PhysicalEducationProfessionalServiceTest {
                 "Prof Name",
                 LocalDate.of(1990, 1, 15),
                 "123.456.789-00",
+                "professional@host.com",
                 "11999999999",
                 "Rua A, 123",
                 Role.PERSONAL_TRAINER);
@@ -152,7 +153,7 @@ class PhysicalEducationProfessionalServiceTest {
         when(repositoryPhyEdProf.save(any(PhysicalEducationProfessional.class))).thenReturn(professional);
 
         PhysicalEducationProfessionalRequest updateRequest = new PhysicalEducationProfessionalRequest(
-                "Updated Name", LocalDate.of(1992, 5, 20), "987.654.321-00", "11888888888", "Rua B, 456",
+                "Updated Name", LocalDate.of(1992, 5, 20), "987.654.321-00", "professional@host.com", "(11) 88888-8888", "Rua B, 456",
                 Role.PERSONAL_TRAINER);
 
         PhysicalEducationProfessional result = service.UpdatePEP("CREF-001", updateRequest);
@@ -179,7 +180,7 @@ class PhysicalEducationProfessionalServiceTest {
         when(repositoryPhyEdProf.save(any(PhysicalEducationProfessional.class))).thenReturn(professional);
 
         PhysicalEducationProfessionalRequest patchRequest = new PhysicalEducationProfessionalRequest(
-                "New Name", null, null, null, null, null);
+                "New Name", null, null, null, null,null, null);
 
         PhysicalEducationProfessional result = service.patchPEP("CREF-001", patchRequest);
 

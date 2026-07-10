@@ -8,6 +8,7 @@ public record PhysicalEducationProfessionalRequest(
                 String name,
                 LocalDate bornDate,
                 String cpf,
+                String email,
                 String phone,
                 String address,
                 Role role) {
