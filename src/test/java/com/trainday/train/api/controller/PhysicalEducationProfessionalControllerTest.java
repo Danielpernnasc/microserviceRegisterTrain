@@ -36,6 +36,7 @@ public class PhysicalEducationProfessionalControllerTest {
                 "Danilo Nassau",
                 LocalDate.of(1990, 1, 15),
                 "999.999.999-99",
+                "professional@host.com",
                 "(11) 99999-9999",
                 "Rua 1, 180 Bairro Qualquer, São Paulo SP",
                 Role.PERSONAL_TRAINER
@@ -109,6 +110,7 @@ public class PhysicalEducationProfessionalControllerTest {
                 "Nome Atualizado",
                 LocalDate.of(1991, 2, 20),
                 "111.222.333-44",
+                "professional@host.com",
                 "(11) 98888-7777",
                 "Rua Atualizada, 200",
                 Role.PERSONAL_TRAINER);
@@ -139,6 +141,7 @@ public class PhysicalEducationProfessionalControllerTest {
         String cref = "CREF12345";
         PhysicalEducationProfessionalRequest request = new PhysicalEducationProfessionalRequest(
                 "Somente Nome",
+                null,
                 null,
                 null,
                 null,
