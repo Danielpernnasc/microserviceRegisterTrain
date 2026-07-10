@@ -75,7 +75,7 @@ public class PhysicalEducationProfessionalService {
 
         repositorPhyEdProf.findAll()
                 .forEach(p -> {
-                    if (!p.getCref().equals(cref) && p.getEmail().equals(req.name())) {
+                    if (!p.getCref().equals(cref) && p.getEmail().equals(req.email())) {
                         throw new RuntimeException("Email already registered");
                     }
                 });
